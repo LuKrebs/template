@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col s6 offset-s3 mdl-cell">
+    <%= image_tag ('welcome.png'), class: 'responsive-img' %>
+  </div>
+</div>
+<div class="valign-wrapper" style="margin-bottom: 35vh;">
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12 m4">
+          <i class="material-icons prefix" for="arrival">date_range</i>
+          <input id ="arrival" type="text" class="datepicker">
+          <label for="arrival">Data de chegada</label>
+        </div>
+        <div class="input-field col s12 m4">
+          <i class="material-icons prefix" for="arrival">date_range</i>
+          <input id="departure" type="text" class="datepicker">
+          <label for="departure">Data de partida</label>
+        </div>
+        <div class="col s12 m4">
+          <a href="#booknow" id="booking" class="btn btn-large waves-effect waves-light amber">pesquisar</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

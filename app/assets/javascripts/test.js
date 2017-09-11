@@ -13,7 +13,7 @@ $(document).ready(function() {
   });
 
   $('.carousel').carousel();
-   $('.scrollspy').scrollSpy();
+  $('.scrollspy').scrollSpy();
 
   $("#booking").on('click', function() {
     var arrival = $("#arrival").val();
@@ -25,12 +25,13 @@ $(document).ready(function() {
       dataType: "json",
       data: {arrival: arrival, departure: departure}
     }).done(function(response) {
-      console.log(response);
+      // console.log(response);
     }).success(function(response){
-      console.log("Response only " + response);
-      console.log("teste  " + response.teste);
-    }).error(function(response){
       console.log(response);
+        $(".bed").slideDown('fast');
+        $(".image-bed-one").attr('src', response.images[0])
+        $(".title-bed-one").html("<span>" + response.names[0][0] + "</span>" + "<span style='margin-left: 3%'>" + response.prices[0][2] + "</span>")
+    }).error(function(response){
     });
   });
 
