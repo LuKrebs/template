@@ -20,7 +20,8 @@ $(document).ready(function() {
     var departure = $("#departure").val();
 
     $.ajax({
-      url: 'http://localhost:3000',
+      // url: 'http://localhost:3000',
+      url: "https://template-hq.herokuapp.com/",
       method: "GET",
       dataType: "json",
       data: {arrival: arrival, departure: departure}
