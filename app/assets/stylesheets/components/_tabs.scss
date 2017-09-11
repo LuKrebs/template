@@ -1,0 +1,22 @@
+.tabs {
+  .indicator {
+    background-color: #ffc107;
+  }
+  .tab {
+    a {
+      color: rgba(0,0,0,0.7);
+
+      &:active {
+        color: black;
+      }
+
+      &:hover {
+        color: rgba(0,0,0,0.5);
+      }
+
+    }
+    a.active {
+      color: rgba(0,0,0,0.7) !important;
+    }
+  }
+}
