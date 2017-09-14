@@ -38,6 +38,9 @@ gem 'jquery-rails'
 gem 'nokogiri', '~> 1.6', '>= 1.6.8'
 gem 'responders'
 
+# Font Awesome
+gem 'font-awesome-sass'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

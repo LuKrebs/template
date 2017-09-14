@@ -6,9 +6,15 @@
     <% end %>
 </div>
 
-<!-- Start Banner -->
 <%= render 'partials/banner' %>
-<!-- End Banner -->
+
+<section>
+  <div class="container-fluid" style="min-height: 120vh; background-color: white;">
+    <%= render 'partials/welcome_text' %>
+    <%= render 'partials/welcome_items' %>
+    <%= render 'partials/welcome_images' %>
+  </div>
+</section>
 
 <section>
   <div class="container-fluid" style="padding: 0 1em; min-height: 112vh">
@@ -22,7 +28,6 @@
         </ul>
       </div>
         <div id="test-swipe-1" class="col s12" style="min-height: 98vh; background-color: white;">
-          <%= render 'partials/welcome' %>
           <!-- Start cards -->
           <%= render 'partials/cards' %>
           <!-- End cards -->
@@ -67,6 +72,6 @@
   </ul>
 </div>
 
-<%= video_tag "home.mp4",autoplay: :autoplay, muted: :muted, loop: :loop, class: "video" %>
+<%= video_tag "home.mp4", muted: :muted, loop: :loop, class: "video" %>
 
 <%= javascript_include_tag ('test.js') %>
