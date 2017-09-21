@@ -1,3 +1,4 @@
+<%= render 'partials/translate_plugin' %>
 <div class="mdl-layout__drawer-button valign-wrapper" aria-expand="false" role="button" tabindex="0" style="margin-top: 15px;">
     <a href="#" data-activates="slide-out" class="button-collapse waves-effect waves-light menu"><i class="small material-icons">menu</i></a>
 
@@ -72,8 +73,5 @@
   </ul>
 </div>
 
-
-<!-- TODO need test -->
-<%= video_tag "home.mp4", autoplay: :autoplay, muted: :muted, loop: :loop, class: "video", poster: "bgvideo.png" %>
-
+<%= video_tag "home.mp4", muted: :muted, autoplay: :autoplay, loop: :loop, class: "video", poster: "bgvideo.png" %>
 <%= javascript_include_tag ('test.js') %>
