@@ -1,16 +1,9 @@
 <%= render 'partials/translate_plugin' %>
-<div class="mdl-layout__drawer-button valign-wrapper" aria-expand="false" role="button" tabindex="0" style="margin-top: 15px;">
-    <a href="#" data-activates="slide-out" class="button-collapse waves-effect waves-light menu"><i class="small material-icons">menu</i></a>
-
-    <%= link_to root_path do %>
-      <%= image_tag ('logo.png'), class: 'logo' %>
-    <% end %>
-</div>
-
+<%= render 'partials/navbar' %>
 <%= render 'partials/banner' %>
 <%= render 'partials/social_media' %>
 <section>
-  <div class="container-fluid" style="min-height: 120vh; background-color: white;">
+  <div class="container-fluid" style="min-height: 120vh; background-color: white; margin-bottom: 9%;">
     <%= render 'partials/welcome_text' %>
     <%= render 'partials/welcome_items' %>
     <%= render 'partials/welcome_images' %>
@@ -18,7 +11,47 @@
 </section>
 
 <section>
-  <div class="container-fluid" style="padding: 0 1em; min-height: 112vh">
+  <div class="container-fluid" style="min-height: 100vh; background-color: white; margin-bottom: 9%;">
+    <div class="container" style="width: 90% !important">
+      <div class="row">
+        <div class="col s6">
+          <h4 style="padding-left: 2%; padding-top: 4%;">Quartos compartilhados</h4>
+        </div>
+        <div class="col s6">
+          <h4 style="padding-left: 2%; padding-top: 4%;">Suítes</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 m3" style="margin: 0 !important; padding: 0 !important;">
+          <%= image_tag 'quarto1.jpg', class: 'responsive-img' %>
+          <%= image_tag 'quarto3.jpg', class: 'responsive-img', style: 'margin-top: -3%;' %>
+        </div>
+        <div class="col s12 m3" style="margin: 0 !important; padding: 0 !important;">
+          <%= image_tag 'quarto2.jpg', class: 'responsive-img' %>
+          <%= image_tag 'quarto4.jpg', class: 'responsive-img', style: 'margin-top: -3%;' %>
+        </div>
+        <div class="col s12 m6" style="margin: 0 !important; padding: 0 !important;">
+          <%= image_tag 'quarto5.jpg', class: 'responsive-img' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 m6">
+          <blockquote>
+            Você está viajando sozinho? Nossos dormitórios compartilhados são uma boa oportunidade para conhecer novas pessoas. Iluminados e ventilados, eles têm armários individuais e camas-XL com luzes individuais de leitura e tomadas de energia para carregar o telefone. Os banheiros e chuveiros estão localizados no corredor perto do quarto.
+          </blockquote>
+        </div>
+        <div class="col s12 m6">
+          <blockquote>
+            Procurando um pouco mais de privacidade? Dormir na nossa confortável suite equipada com banheiro privativo, uma cama queen size e um ventilador. O buffet de café da manhã e as toalhas estão incluídas na tarifa do quarto.
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container-fluid" style="padding: 0 1em; min-height: 112vh;">
     <div class="row">
       <div class="col s12" style="padding: 0;">
         <ul id="tabs-swipe-demo" class="tabs">
@@ -29,9 +62,7 @@
         </ul>
       </div>
         <div id="test-swipe-1" class="col s12" style="min-height: 98vh; background-color: white;">
-          <!-- Start cards -->
           <%= render 'partials/cards' %>
-          <!-- End cards -->
         </div>
         <div id="test-swipe-2" class="col s12" style="min-height: 98vh; background-color: white;">
           Contato e Localização
