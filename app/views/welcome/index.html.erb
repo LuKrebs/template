@@ -11,87 +11,14 @@
 </section>
 
 <section>
-  <div class="container-fluid" style="min-height: 100vh; background-color: white; margin-bottom: 9%;">
+  <div class="container-fluid" style="min-height: 90vh; background-color: white; margin-bottom: 9%;">
     <div class="container" style="width: 90% !important">
+      <%= render 'partials/rooms' %>
+
       <div class="row">
-        <div class="col s6">
-          <h4 style="padding-left: 2%; padding-top: 4%;">Quartos compartilhados</h4>
-        </div>
-        <div class="col s6">
-          <h4 style="padding-left: 2%; padding-top: 4%;">Suítes</h4>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s12 m3" style="margin: 0 !important; padding: 0 !important;">
-          <%= image_tag 'quarto1.jpg', class: 'responsive-img' %>
-          <%= image_tag 'quarto3.jpg', class: 'responsive-img', style: 'margin-top: -3%;' %>
-        </div>
-        <div class="col s12 m3" style="margin: 0 !important; padding: 0 !important;">
-          <%= image_tag 'quarto2.jpg', class: 'responsive-img' %>
-          <%= image_tag 'quarto4.jpg', class: 'responsive-img', style: 'margin-top: -3%;' %>
-        </div>
-        <div class="col s12 m6" style="margin: 0 !important; padding: 0 !important;">
-          <%= image_tag 'quarto5.jpg', class: 'responsive-img' %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s12 m6">
-          <blockquote>
-            Você está viajando sozinho? Nossos dormitórios compartilhados são uma boa oportunidade para conhecer novas pessoas. Iluminados e ventilados, eles têm armários individuais e camas-XL com luzes individuais de leitura e tomadas de energia para carregar o telefone. Os banheiros e chuveiros estão localizados no corredor perto do quarto.
-          </blockquote>
-        </div>
-        <div class="col s12 m6">
-          <blockquote>
-            Procurando um pouco mais de privacidade? Dormir na nossa confortável suite equipada com banheiro privativo, uma cama queen size e um ventilador. O buffet de café da manhã e as toalhas estão incluídas na tarifa do quarto.
-          </blockquote>
-        </div>
+
       </div>
     </div>
-  </div>
-</section>
-
-<section>
-  <div class="container-fluid" style="padding: 0 1em; min-height: 112vh;">
-    <div class="row">
-      <div class="col s12" style="padding: 0;">
-        <ul id="tabs-swipe-demo" class="tabs">
-          <li class="tab col s3"><a href="#test-swipe-1" id="about" class="scrollspy"><i class="material-icons prefix tiny" style="margin-right: 6px;">home</i> <span class="hide-on-small-only">Quem somos</span></a></li>
-          <li class="tab col s3"><a href="#test-swipe-2" id="contact" class="scrollspy"><i class="material-icons prefix tiny" style="margin-right: 6px;">location_on</i><span class="hide-on-small-only">Contato e Localização</span></a></li>
-          <li class="tab col s3"><a href="#booknow" id="book" class="scrollspy"><i class="material-icons prefix tiny" style="margin-right: 6px;">hotel</i><span class="hide-on-small-only">Reservas</span></a></li>
-          <li class="tab col s3"><a href="#test-swipe-4" id="work" class="scrollspy"><i class="material-icons prefix tiny" style="margin-right: 6px;">work</i><span class="hide-on-small-only">Trabalhe conosco</span></a></li>
-        </ul>
-      </div>
-        <div id="test-swipe-1" class="col s12" style="min-height: 98vh; background-color: white;">
-          <%= render 'partials/cards' %>
-        </div>
-        <div id="test-swipe-2" class="col s12" style="min-height: 98vh; background-color: white;">
-          Contato e Localização
-        </div>
-        <div id="booknow" class="col s12 scrollspy" style="min-height: 98vh; background-color: white;">
-
-          <div class="row bed" style="display: none;">
-            <div class="col s12" style="max-height: 20vh !important;">
-              <div class="card">
-                <div class="card-image">
-                  <%= image_tag ("cafe.jpg"), class: "activator image-bed-one responsive-image", style: "cursor: pointer; width: 170px; height: 170px;" %>
-                  <a class="btn-floating halfway-fab waves-effect waves-light amber activator"><i class="material-icons">hotel</i></a>
-                </div>
-                <div class="card-content activator">
-                  <p class="truncate title-bed-one"></p>
-                </div>
-                <div class="card-reveal">
-                  <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                  <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <div id="test-swipe-4" class="col s12" style="min-height: 98vh; background-color: white;">
-          Trabalhe conosco
-        </div>
-      </div>
   </div>
 </section>
 
@@ -103,6 +30,8 @@
     <li><a class="btn-floating red"><i class="material-icons">message</i></a></li>
   </ul>
 </div>
+
+<%= render 'partials/footer' %>
 
 <%= video_tag "home.mp4", muted: :muted, autoplay: :autoplay, loop: :loop, class: "video", poster: "bgvideo.png" %>
 <%= javascript_include_tag ('test.js') %>
