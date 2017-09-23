@@ -1,0 +1,115 @@
+$amber : #fff;
+$width  : 40vh;
+$height : 40vh;
+$primary_color : #ffc107;
+$border_color--hover : lighten($amber, 80);
+$stroke : 1vh;
+$border: $stroke solid darken(#f7f7f7 ,10);
+$transition_duration:100ms;
+$pipeline_width: $width+$stroke;
+$pipeline_height: $height+$stroke;
+$pipes : 4;
+
+@function border-pipeline ($transition_duration, $pipe) {
+    @return $transition_duration*$pipe;
+}
+
+@mixin border-animation($dimension, $easing ,$pipe )
+{
+    transition: $transition_duration  $dimension $easing border-pipeline($transition_duration,$pipe);
+    -web-kit-transition: $transition_duration  $dimension $easing border-pipeline($transition_duration,$pipe);
+}
+.sustentability {
+  .col {
+    display: flex;
+    flex-direction: column;
+    flex-growth: 0 0;
+  }
+  .s-icon {
+    min-height: 40vh;
+    max-height: 40vh;
+    height: 40vh;
+  .box {
+      width: $width ;
+      height: $height ;
+      background: #f9f9f9;
+      margin: auto;
+      border-color: transparent;
+      border: $stroke;
+      text-align: center;
+      color: #ffc107;
+      position:relative;
+      cursor: pointer;
+      transition: ($transition_duration*$pipes)+$transition_duration ease;
+
+      .subtext {
+        font-size: 12px;
+      }
+
+      .fa {
+        font-size: 15vh !important;
+        color: #ffc107 !important;
+        padding: 15px;
+      }
+
+      &:before {
+          position: absolute;
+          width: 0;
+          height:$stroke;
+          content: '';
+          background: #fff;
+          top:-$stroke;
+          left:-$stroke;
+          @include border-animation( width, ease, 3);
+      }
+      &:after {
+          position: absolute;
+          width:$stroke;
+          height:0;
+          content: '';
+          background: #fff;
+          top:-$stroke;
+          right: -$stroke;
+          @include border-animation( height, ease, 2);
+      }
+      &-inner:after{
+          position: absolute;
+          width: 0;
+          height:$stroke;
+          content: '';
+          background: #fff;
+          bottom:-$stroke;
+          right: -$stroke;
+          @include border-animation( width, ease, 1);
+      }
+      &-inner:before {
+          position: absolute;
+          width: $stroke;
+          height:0;content: '';
+          background: #fff;
+          bottom:-$stroke;
+          left: -$stroke;
+          @include border-animation( height, ease, 0);
+      }
+      &:hover{
+          border: $stroke solid darken(#f7f7f7 ,10);
+          &:before{
+              width: $pipeline_width;
+              @include border-animation( width, ease, 0);
+          }
+          &:after {
+              height:$pipeline_height;
+              @include border-animation( height, ease, 1);
+          }
+          .box-inner:after {
+              width: $pipeline_width;
+              @include border-animation( width, ease, 2);
+          }
+          .box-inner:before {
+              height:$pipeline_height;
+              @include border-animation( height, ease, 3);
+          }
+      }
+    }
+  }
+}
