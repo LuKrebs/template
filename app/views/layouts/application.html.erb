@@ -11,7 +11,10 @@
   </head>
 
   <body>
-    <%= render 'layouts/navbar' %>
+    <%= render 'partials/sidebar' %>
+    <%= render 'partials/translate_plugin' %>
+    <%= render 'partials/navbar' %>
     <%= yield %>
+    <%= render 'partials/footer' %>
   </body>
 </html>
