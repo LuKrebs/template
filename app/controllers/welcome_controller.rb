@@ -2,7 +2,7 @@ require 'open-uri'
 require 'json'
 
 class WelcomeController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: [:index, :about]
 
   def index
     if request.xhr?
@@ -66,7 +66,7 @@ class WelcomeController < ApplicationController
   end
 
   def about
-    @employee = Employee.first()
+    @employees = Employee.all if Employee.all
   end
 
   def contact

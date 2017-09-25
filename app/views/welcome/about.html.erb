@@ -12,30 +12,23 @@
     <h4 style="padding-left: 2%; padding-top: 2%;" class="black-text">Adoramos o que fazemos</h4>
     <p style="padding-left: 1%;">Conheça nosso staff.</p>
     <div class="row">
-      <div class="col s12 m4">
-        <%= image_tag 'luis.gif', class: 'responsive-img' %>
-      </div>
-      <div class="col s12 m4">
-        <%= image_tag 'karina.jpg', class: 'responsive-img' %>
-      </div>
-      <div class="col s12 m4">
-        <%= image_tag 'joao.jpg', class: 'responsive-img' %>
-      </div>
-      <div class="col s12 m4">
-        <%= image_tag 'candida.jpg', class: 'responsive-img' %>
-      </div>
-      <div class="col s12 m4">
-        <%= image_tag 'rogerio.jpg', class: 'responsive-img' %>
-      </div>
-      <div class="col s12 m4">
-        <%= image_tag 'carol.jpg', class: 'responsive-img' %>
-      </div>
-      <div class="col s12 m4">
-        <%= image_tag 'cesar.gif', class: 'responsive-img' %>
-      </div>
-      <div class="col s12 m4">
-        <%= cl_image_tag("http://res.cloudinary.com/lucianok-tech/image/upload/v1506212674/pmpinuv3zm9hx3bhav8l.jpg", width: 400, height: 300, crop: :fill) %>
-      </div>
+      <% @employees.each do |employee| %>
+        <div class="col s12 m4">
+          <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <%= image_tag employee.photo.url, class: 'activator responsive-img' %>
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4"><%= employee.name %><i class="material-icons right">more_vert</i></span>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4"><%= employee.name %><i class="material-icons right">close</i></span>
+              <p><%= employee.description %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </section>
+<%= javascript_include_tag ('about.js') %>
