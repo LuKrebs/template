@@ -2,9 +2,9 @@ require 'open-uri'
 require 'json'
 
 class WelcomeController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :about]
 
   def index
-
     if request.xhr?
 
       arrival = params[:arrival].to_date
@@ -20,7 +20,6 @@ class WelcomeController < ApplicationController
       @names = []
       @prices = []
       @units = []
-      # binding.pry
 
       even.each do |item|
         @images <<  item.search("img").attribute('src').text
@@ -64,5 +63,18 @@ class WelcomeController < ApplicationController
         format.html
       end
     end
+  end
+
+  def about
+    @employees = Employee.all if Employee.all
+  end
+
+  def contact
+  end
+
+  def booking
+  end
+
+  def work
   end
 end

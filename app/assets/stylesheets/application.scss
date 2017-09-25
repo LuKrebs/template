@@ -22,7 +22,12 @@
 
 // Graphical variables
 @import "config/fonts";
+@import "config/colors";
 
 // External libraries
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
+// Import unique pages stylesheets
+@import "uniques/about";
+@import "uniques/contact";
