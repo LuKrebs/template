@@ -2,7 +2,7 @@ require 'open-uri'
 require 'json'
 
 class WelcomeController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :about]
+  skip_before_action :authenticate_user!, only: [:index, :about, :contact]
 
   def index
     if request.xhr?
@@ -70,6 +70,7 @@ class WelcomeController < ApplicationController
   end
 
   def contact
+    @message = Message.new
   end
 
   def booking

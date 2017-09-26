@@ -57,6 +57,9 @@ gem 'cloudinary'
 gem 'carrierwave', '~> 0.11.2'
 gem 'mini_magick'
 
+# Simple form
+gem 'simple_form'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

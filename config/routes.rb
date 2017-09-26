@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   get 'work', to: 'welcome#work'
   get 'home', to: 'welcome#index'
 
+  resources :messages, only: [:create, :new]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
