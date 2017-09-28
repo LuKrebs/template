@@ -2,7 +2,7 @@ require 'open-uri'
 require 'json'
 
 class WelcomeController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :about, :contact, :work]
+  skip_before_action :authenticate_user!, only: [:index, :about, :contact, :work, :booking]
 
   def index
     if request.xhr?
@@ -16,13 +16,25 @@ class WelcomeController < ApplicationController
 
       even = html.search(".even")
       odd = html.search(".odd")
-      @images = []
+      @images = [
+        ["https://s3-sa-east-1.amazonaws.com/hqbeds.com.br/drjl9zZq6b/33308ee8e5b62a25c8f86bdb3822ac88.jpg",
+         "https://s3-sa-east-1.amazonaws.com/hqbeds.com.br/drjl9zZq6b/8d6fcc652d69180b0fa8af317aa18f65.jpg",
+         "https://s3-sa-east-1.amazonaws.com/hqbeds.com.br/drjl9zZq6b/2b17e62ef7cb281560c15c51b85d2b47.jpg"],
+        ["https://s3-sa-east-1.amazonaws.com/hqbeds.com.br/drjl9zZq6b/886ddd858c30cda2afabc0d2acd1c70b.jpg",
+         "https://s3-sa-east-1.amazonaws.com/hqbeds.com.br/drjl9zZq6b/b1c11ea0bfd326549c40e0f3ba752a91.jpg"],
+        ["https://s3-sa-east-1.amazonaws.com/hqbeds.com.br/drjl9zZq6b/7ad64e499dc4b607fe16c10f45e9b092.jpg",
+         "https://s3-sa-east-1.amazonaws.com/hqbeds.com.br/drjl9zZq6b/e5fbf80d4d2a964217e61f0f081b5583.jpg"],
+        ["https://s3-sa-east-1.amazonaws.com/hqbeds.com.br/drjl9zZq6b/1e8577dd113310b07d6b3e5554f5f0ae.jpg",
+         "https://s3-sa-east-1.amazonaws.com/hqbeds.com.br/drjl9zZq6b/7f605e6901ca12d60fa4f394cb7fc189.jpg"],
+        ["https://s3-sa-east-1.amazonaws.com/hqbeds.com.br/drjl9zZq6b/7b22ef0ed94fd70367531a961417dfb4.jpg",
+         "https://s3-sa-east-1.amazonaws.com/hqbeds.com.br/drjl9zZq6b/c5c8eb80b8e6a9851e7347dd89372453.jpg"]
+      ]
       @names = []
       @prices = []
       @units = []
 
       even.each do |item|
-        @images <<  item.search("img").attribute('src').text
+        # @images <<  item.search("img").attribute('src').text
         @names << item.search('.col-md-3 h6').text.delete("\n").strip.split("  ")
         @prices << item.search(".col-md-5 h6 b").text.delete("\n").strip.split("  ")
         if item.search("select").attribute('disabled').nil?
@@ -33,7 +45,7 @@ class WelcomeController < ApplicationController
       end
 
       odd.each do |item|
-        @images <<  item.search("img").attribute('src').text
+        # @images <<  item.search("img").attribute('src').text
         @names << item.search('.col-md-3 h6').text.delete("\n").strip.split("  ")
         @prices << item.search(".col-md-5 h6 b").text.delete("\n").strip.split("  ")
         if item.search("select").attribute('disabled').nil?

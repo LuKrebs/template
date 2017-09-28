@@ -15,4 +15,5 @@
 //= require jquery_ujs
 //= require materialize-sprockets
 //= require turbolinks
+//= require swipebox
 //= require_tree .

@@ -60,6 +60,9 @@ gem 'mini_magick'
 # Simple form
 gem 'simple_form'
 
+# Swipe box
+gem 'swipebox'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
