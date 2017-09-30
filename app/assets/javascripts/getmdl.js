@@ -33,7 +33,6 @@ $(document).ready(function() {
     e.preventDefault();
   })
 
-
   $("#booking").on('click', function() {
     var arrival = $("#arrival").val();
     var departure = $("#departure").val();
@@ -57,6 +56,9 @@ $(document).ready(function() {
     }
 
     $("#myNav").css('width', "100%");
+
+    var arrival = $("#arrival").val();
+    var departure = $("#departure").val();
 
     $.ajax({
       url: 'http://localhost:3000',

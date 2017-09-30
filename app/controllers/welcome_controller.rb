@@ -5,6 +5,7 @@ class WelcomeController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :about, :contact, :work, :booking]
 
   def index
+    binding.pry
     if request.xhr?
 
       arrival = params[:arrival].to_date

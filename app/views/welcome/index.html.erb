@@ -1,6 +1,6 @@
 <%= render 'partials/banner' %>
-<%= render 'partials/social_media' %>
 <%= render 'partials/overlay' %>
+<%= render 'partials/social_media' %>
 <section>
   <div class="container-fluid" style="min-height: 120vh; background-color: white;">
     <%= render 'partials/welcome_text' %>
@@ -19,4 +19,4 @@
   </div>
 </section>
 <%= render 'partials/livechat' %>
-<%= video_tag "home.mp4", autoplay: :autoplay, muted: :muted, loop: :loop, class: "video", poster: "bgvideo.png", id: 'home_video' %>
+<%= video_tag "home.mp4", muted: :muted, loop: :loop, class: "video", poster: "bgvideo.png", id: 'home_video' %>

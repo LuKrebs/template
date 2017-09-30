@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title> Café Hostel</title>
+    <title class="notranslate"> Café Hostel</title>
     <%= csrf_meta_tags %>
     <%= favicon_link_tag 'cafehostel.ico' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -12,7 +12,6 @@
 
   <body onscroll="navbarFixedFunction()">
     <%= render 'partials/sidebar' %>
-    <%= render 'partials/translate_plugin' %>
     <%= render 'partials/navbar' %>
     <%= yield %>
     <%= render 'partials/footer' %>
