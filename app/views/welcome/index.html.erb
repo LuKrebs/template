@@ -19,4 +19,5 @@
   </div>
 </section>
 <%= render 'partials/livechat' %>
-<%= video_tag "home.mp4", muted: :muted, loop: :loop, class: "video", poster: "bgvideo.png", id: 'home_video' %>
+<%= video_tag "home.mp4", autoplay: :autoplay, muted: :muted, loop: :loop, class: "video", poster: "bgvideo.png", id: 'home_video' %>
+<%= javascript_include_tag 'booking.js' %>

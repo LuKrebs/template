@@ -16,4 +16,3 @@
 //= require materialize-sprockets
 //= require turbolinks
 //= require swipebox
-//= require_tree .
