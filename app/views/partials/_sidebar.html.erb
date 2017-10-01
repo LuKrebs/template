@@ -1,12 +1,14 @@
 <nav class="side-nav" id="slide-out">
   <ul>
-    <li>
-      <div class="user-view" style="margin-top: 10%; margin-left: 10%; min-height: 25vh;">
-        <div class="background">
-          <%= link_to root_path do %>
-            <%= image_tag 'logo.png' %>
-          <% end %>
-        </div>
+    <li id="side-bar-logo">
+      <div class="side-bar-div">
+        <%= link_to root_path do %>
+          <div class="user-view" style="margin-top: 10%; margin-left: 10%; min-height: 25vh;">
+            <div class="background">
+                <%= image_tag 'logo.png' %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </li>
     <li>
@@ -21,7 +23,7 @@
     </li>
     <li>
       <%= link_to booking_path do %>
-        <i class="material-icons prefix tiny" style="margin-right: 10px;">hotel</i>Reservas
+        <i class="material-icons prefix tiny" style="margin-right: 10px;">hotel</i>Central de Reservas
       <% end %>
     </li>
     <li>
