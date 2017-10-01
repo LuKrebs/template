@@ -37,8 +37,6 @@ $(document).ready(function() {
     }).success(function(response){
       console.log(response);
 
-
-
       for (var i = 0; i < 5; i++) {
         var imagesArray = response.images[i];
         for (var j = 0; j < imagesArray.length; j++) {
