@@ -1,0 +1,18 @@
+<form class="col s12">
+  <div class="row" style="display: flex; align-items: center; flex-direction: column; justify-content: center; background-color: rgba(0, 0, 0, 0.52); border-radius: 2px; padding: 20px; min-width: 220px;">
+    <div class="input-field col s12">
+      <i class="material-icons prefix" for="arrival">date_range</i>
+      <input id ="arrival_overlay_page" type="text" class="datepicker">
+      <label for="arrival_overlay_page">Data de chegada</label>
+    </div>
+    <div class="input-field col s12">
+      <i class="material-icons prefix" for="arrival">date_range</i>
+      <input id="departure_overlay_page" type="text" class="datepicker">
+      <label for="departure_overlay_page">Data de partida</label>
+    </div>
+    <div class="col s12" style="text-align: center;">
+      <a style="cursor: pointer;" id="booking_overlay_page" class="btn btn-large waves-effect waves-light amber modal-trigger">reservar</a>
+    </div>
+    <%= render 'partials/errors_overlay' %>
+  </div>
+</form>
