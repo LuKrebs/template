@@ -16,7 +16,6 @@ $(document).ready(function() {
   $('.swipebox').swipebox();
   $('select').material_select();
   $('.collapsible').collapsible();
-
   $("#arrival").on('change', function(){
     var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
     var arrival = $("#arrival").val();
@@ -27,6 +26,17 @@ $(document).ready(function() {
     }
     $("#departure").val(result.getDate().toString() + " " + monthNames[result.getMonth()] + " " + result.getFullYear().toString());
     $("label[for=departure]").addClass('active');
+  });
+  $("#arrival_overlay_page").on('change', function(){
+    var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+    var arrival = $("#arrival_overlay_page").val();
+    var result = new Date(arrival);
+    result.setDate(result.getDate() + 2);
+    if (arrival == "") {
+      return $("#departure_overlay_page").val("");
+    }
+    $("#departure_overlay_page").val(result.getDate().toString() + " " + monthNames[result.getMonth()] + " " + result.getFullYear().toString());
+    $("label[for=departure_overlay_page]").addClass('active');
   });
   $(".error-message i").on('click', function(e) {
     e.preventDefault();
@@ -72,8 +82,6 @@ function navbarFixedFunction() {
     $(".input-field .material-icons.prefix").css('color', "rgba(0, 0, 0, 0.87)");
   }
 }
-
-/* Close when someone clicks on the "x" symbol inside the overlay */
 function closeNav() {
   document.getElementById("myNav").style.width = "0%";
 }

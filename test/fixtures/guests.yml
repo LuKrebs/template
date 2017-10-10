@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  arrive: MyString
+  departure: MyString
+  room: MyString
+  subtotal_price: MyString
+  breakfast: false
+  breakfast_value: 1
+  total_price: MyString
+  first_name: MyText
+  last_name: MyText
+  email: MyString
+  phone: MyString
+  country: MyString
+  notes: MyText
+  descount_cupom: MyString
+  credit_card_name: MyText
+  credit_card_number: MyString
+  month_expiration_date: MyString
+  year_expiration_date: MyString
+  security_code: MyString
+
+two:
+  arrive: MyString
+  departure: MyString
+  room: MyString
+  subtotal_price: MyString
+  breakfast: false
+  breakfast_value: 1
+  total_price: MyString
+  first_name: MyText
+  last_name: MyText
+  email: MyString
+  phone: MyString
+  country: MyString
+  notes: MyText
+  descount_cupom: MyString
+  credit_card_name: MyText
+  credit_card_number: MyString
+  month_expiration_date: MyString
+  year_expiration_date: MyString
+  security_code: MyString
