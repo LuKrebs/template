@@ -9,7 +9,11 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
+  <% if params["action"] == 'index' %>
   <body onscroll="navbarFixedFunction()">
+  <% else %>
+  <body>
+  <% end %>
     <%= render 'partials/sidebar' %>
     <%= render 'partials/navbar' %>
     <%= yield %>

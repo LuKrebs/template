@@ -64,7 +64,7 @@ $(document).ready(function() {
                             <span class='red-text third-booking-text'>DISCOUNT 5%</span>\
                             <span class='black-text fourth-booking-text'>" + response.prices[i][2] + "</span>\
                           </div>\
-                          <div class='input-field col s7 m6 l6' style='padding: 0px; float: left; margin-top: 0px;'>\
+                          <div class='input-field col s7 m6 l6' style='padding: 0px; float: left; margin-top: 0px;' onchange='ableButton(" + i + ");'>\
                             <select>\
                               <option value='0' selected>Quantas camas?</option>";
                               for (var j = 0; j < units; j++) {
@@ -144,7 +144,7 @@ $(document).ready(function() {
                             <span class='red-text third-booking-text'>DISCOUNT 5%</span>\
                             <span class='black-text fourth-booking-text'>" + response.prices[i][2] + "</span>\
                           </div>\
-                          <div class='input-field col s7 m6 l6' style='padding: 0px; float: left; margin-top: 0px;'>\
+                          <div class='input-field col s7 m6 l6' style='padding: 0px; float: left; margin-top: 0px;' onchange='ableButton(" + i + ");'>\
                             <select>\
                               <option value='0' selected>Quantas camas?</option>";
                               for (var j = 0; j < units; j++) {
@@ -162,7 +162,64 @@ $(document).ready(function() {
     }).error(function(response){
       // console.log(response);
     });
+  });
 
+  $(".rentButton").click(function(){
+    var bedsAndPrices = [];
+    $(".fourth-booking-text").each(function(index){
+      var price = $(this).text()
+      var numberOfBeds = $("input.select-dropdown")[index].value;
+      var name = $(".first-booking-text")[index].innerText;
+      price = parseFloat(price.replace("R$", ""))
+      numberOfBeds = parseInt(numberOfBeds);
+      if (!(isNaN(numberOfBeds))) {
+          if (numberOfBeds > 1) {
+            var totalPrice = price * numberOfBeds
+            bedsAndPrices.push([price, numberOfBeds, name, totalPrice]);
+            console.log(bedsAndPrices)
+          }
+      }
+    });
+    $(".booking_cards").empty();
+    $(".form-to-booking").slideDown("fast");
+    $(".info-content i.item-active").removeClass("item-active");
+    $(".info-content span.text-active").removeClass("text-active");
+    $(".info-content:nth-child(2) i").addClass("item-active");
+    $(".info-content:nth-child(2) span").addClass("text-active");
+    $(".rentButton").slideUp("fast");
+    $(".card-panel").remove();
+    $(".google-maps").empty();
+
+  //   var card = "<div class='card-panel white' style='min-width: 220px;'>\
+  //                 <span class='black-text'>\
+  //                   <ul>\
+  //                     <li>Quarto:</li>\
+  //                     <li>" + bedsAndPrices[0][2] + "</li>\
+  //                     <li>Preço:</li>\
+  //                     <li>" + bedsAndPrices[0][3] + "</li>\
+  //                     <li>Unidades:</li>\
+  //                     <li>" + bedsAndPrices[0][1] + "</li>\
+  //                     <li></li>\
+  //                     <li>Subtotal: </li>\
+  //                     <li style='display: none'> (+) Café da manhã: BRL" + (12 * bedsAndPrices[0][1]) + "</li>\
+  //                     <li>Total:" + bedsAndPrices[0][2] + "</li>\
+  //                   </ul>\
+  //                 </span>\
+  //               </div>"
+  // $(".google-maps").append(card);
   });
 });
 
+function ableButton(number) {
+  var numberOfBeds = parseInt($("input.select-dropdown")[number].value);
+  $(".rentButton").slideUp('fast');
+  $("input.select-dropdown").each(function(index) {
+    var bed = $( this ).val()
+    if (!isNaN(bed)) {
+      if (bed > 0) {
+        console.log(bed);
+        return $(".rentButton").slideDown('fast');
+      }
+    }
+  });
+};
