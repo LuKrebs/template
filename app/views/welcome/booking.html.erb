@@ -1,207 +1,247 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col s12 m3" style="margin-top: 2vh;">
-      <blockquote>
-        <h5 class="center-align black-text">Escolha as datas que deseja se hospedar conosco.</h5>
-      </blockquote>
-      <form class="col s12">
-        <div class="row" style="display: flex; align-items: center; flex-direction: column; justify-content: center; background-color: rgba(0, 0, 0, 0.52); border-radius: 2px;">
-          <div class="input-field col s12">
-            <i class="material-icons prefix" for="arrival">date_range</i>
-            <input id ="arrival" type="text" class="datepicker">
-            <label for="arrival">Data de chegada</label>
+    <div class="row booking_cards" style="margin-top: 30px;">
+      <div class="col s12 m8 offset-m2 l4 offset-l4">
+        <div class="card" style="min-height: 320px; min-width: 290px;">
+          <div class="card-image" >
+            <%= link_to (image_path ('computador.jpg')), class: 'swipebox', rel: 'bed-1' do %>
+              <%= image_tag ("computador.jpg"), alt: 'image' %>
+            <% end %>
+            <%= link_to (image_path ('computador.jpg')), class: 'swipebox', rel: 'bed-1' do %>
+              <span style="position: absolute; top: 0; right:0; margin: 5px;">
+                <i class="material-icons white-text">zoom_in</i>
+              </span>
+            <% end %>
+            <span class="card-title white-text right-align" style="z-index: 1;">1 <i class="fa fa-user" aria-hidden="true" style="margin-left: 5px;"></i></span>
           </div>
-          <div class="input-field col s12">
-            <i class="material-icons prefix" for="arrival">date_range</i>
-            <input id="departure" type="text" class="datepicker">
-            <label for="departure">Data de partida</label>
+          <div class="card-content" style="min-height: 25vh;">
+            <div class="booking-info">
+              <span class="black-text first-booking-text" style="float: left;">Mixed dorm 11 beds (spacious!)</span>
+              <span class="red-text second-booking-text" style="float: right; text-decoration: line-through;">R$ 200,00</span>
+            </div>
+            <p class="booking-text" style="margin-bottom: 10px;"></p>
+            <div class="booking-info">
+              <span class="red-text first-booking-text">DESCONTO 5%</span>
+              <span class="black-text first-booking-text">R$ 190,00</span>
+            </div>
+            <p class="booking-text"></p>
+            <div class="input-field col s6 m4" style="padding: 0px; float: left;">
+              <select>
+                <option value="0" selected>Quantas camas?</option>
+                <option value="1">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3 </option>
+              </select>
+            </div>
           </div>
-          <div class="col s12" style="text-align: center;">
-            <a style="cursor: pointer;" id="booking" class="btn btn-large waves-effect waves-light amber modal-trigger">reservar</a>
-          </div>
-          <%= render 'partials/errors' %>
         </div>
-      </form>
-      <div class="col s12">
-        <%= image_tag ('breakfast.jpg'), class: 'responsive-image', style: "max-width: 100%;" %>
-        <%= render 'partials/google_maps' %>
-        <div class="card-panel white">
-          <span class="black-text">
-          <ul>
-            <li>Rua Agissê, 152 - Vila Madalena</li>
-            <li>Sao Paulo - Sao Paulo</li>
-            <li>Telefone: (11) 2649-7217</li>
-            <li>E-Mail: info@cafehostel.com.br</li>
-          </ul>
-          </span>
+        <div class="card" style="min-height: 320px; min-width: 290px;">
+          <div class="card-image" >
+            <%= link_to (image_path ('computador.jpg')), class: 'swipebox', rel: 'bed-1' do %>
+              <%= image_tag ("computador.jpg"), alt: 'image' %>
+            <% end %>
+            <%= link_to (image_path ('computador.jpg')), class: 'swipebox', rel: 'bed-1' do %>
+              <span style="position: absolute; top: 0; right:0; margin: 5px;">
+                <i class="material-icons white-text">zoom_in</i>
+              </span>
+            <% end %>
+            <span class="card-title white-text right-align" style="z-index: 1;">1 <i class="fa fa-user" aria-hidden="true" style="margin-left: 5px;"></i></span>
+          </div>
+          <div class="card-content" style="min-height: 25vh;">
+            <div class="booking-info">
+              <span class="black-text first-booking-text" style="float: left;">Mixed dorm 11 beds (spacious!)</span>
+              <span class="red-text second-booking-text" style="float: right; text-decoration: line-through;">R$ 200,00</span>
+            </div>
+            <p class="booking-text" style="margin-bottom: 10px;"></p>
+            <div class="booking-info">
+              <span class="red-text first-booking-text">DESCONTO 5%</span>
+              <span class="black-text first-booking-text">R$ 190,00</span>
+            </div>
+            <p class="booking-text"></p>
+            <div class="input-field col s6 m4" style="padding: 0px; float: left;">
+              <select>
+                <option value="0" selected>Quantas camas?</option>
+                <option value="1">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3 </option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col s12 m9" style="padding: 0 !important">
-      <div class="row" style="padding: 0 !important">
+  </div>
+<!--   <div class="row form-to-booking" style="display: none;">
+    <form class="col s12 overlay-form">
+      <h5>Identifiação</h5>
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <input id="first_name" type="text" class="validate" pattern="[a-zA-Z\s]+" minlength="2">
+          <label for="first_name" data-error="Nome inválido">Nome</label>
+        </div>
+        <div class="input-field col s12 m6">
+          <input id="last_name" type="text" class="validate" pattern="[a-zA-Z\s]+">
+          <label for="last_name" data-error="Sobrenome inválido">Sobrenome</label>
+        </div>
+        <div class="input-field col s12 m6">
+          <input id="guest_email" type="email" class="validate">
+          <label for="guest_email" data-error="E-mail inválido">E-mail</label>
+        </div>
+        <div class="input-field col s12 m6">
+          <input id="confirm_email" type="text" class="validate" onchange="checkEmailConfirmation()">
+          <label for="confirm_email" data-error="Os emails devem ser iguais">Confirmação de E-mail</label>
+        </div>
+        <div class="input-field col s12 m6">
+          <input id="phone" type="text" class="validate" pattern="[0-9\s]+">
+          <label for="phone" data-error="Insira apenas números">Telefone</label>
+        </div>
+        <div class="input-field col s12 m6" id="country">
+          <select>
+            <option value="" disabled selected>País</option>
+            <% COUNTRIES.each do |country| %>
+            <option value="<%= country %>"><%= country %></option>
+            <% end %>
+          </select>
+          <label>País</label>
+        </div>
+        <div class="input-field col s12">
+          <textarea id="notes" class="materialize-textarea"></textarea>
+          <label for="notes">Notas:</label>
+        </div>
+      </div>
+      <h5>Café da manhã</h5>
+      <div class="row">
+        <div class="col s12" style="padding: 0 15px; margin: 10px 0;">
+          <input type="checkbox" id="breakfast" />
+          <label for="breakfast">Adicionar café da manhã por mais BRL 12.00 por hóspede por noite.</label>
+        </div>
+      </div>
+      <h5>Cupom de Desconto</h5>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="discount_code" type="text">
+          <label for="discount_code">Código</label>
+        </div>
+      </div>
+      <h5>Pagamento</h5>
+      <div class="row">
+        <div class="col s12" style="padding: 0 15px; margin: 10px 0;">
+          <input type="checkbox" id="credit_card_accepted" checked="checked" disabled="disabled" />
+          <label for="credit-card-accepted">Cartão de Crédito</label>
+        </div>
+      </div>
+      <div class="input-field col s12 m6">
+        <input id="credit-card-name" type="text" class="validate" pattern="[a-zA-Z\s]+">
+        <label for="credit-card-name" data-error="Nome inválido">Nome</label>
+      </div>
+      <div class="input-field col s12 m6">
+        <input id="credit-card-number" type="text" pattern="[0-9\s]+" minlength="16" class="validate" onchange="creditCardValidation()">
+        <label for="credit-card-number" data-error="Cartão inválido">Nº Cartão de Crédito</label>
+      </div>
+      <div class="row">
         <div class="col s12">
-          <ul class="tabs" style="display: flex;" style="padding: 0 !important">
-            <li class="tab col s3"><a href="#test1" id="class-teste" class="active"><i class='material-icons prefix tiny' style='margin-right: 10px'>home</i>Escolha seu quarto</a></li>
-            <li class="tab col s3"><a href="#test2"><i class='material-icons prefix tiny' style='margin-right: 10px'>person</i>Revise seus dados</a></li>
-            <li class="tab col s3"><a href="#test3"><i class='material-icons prefix tiny' style='margin-right: 10px'>check</i>Confirmação</a></li>
-          </ul>
+          <label>Validade:</label>
         </div>
       </div>
-      <div id="test1" class="col s12" style="padding: 0 !important">
-        <div class="row booking_cards" style="margin-top: 30px;">
-          <div class="col s12 m8 offset-m2 l4 offset-l4">
-            <div class="card" style="min-height: 320px; min-width: 290px;">
-              <div class="card-image" >
-                <%= link_to (image_path ('computador.jpg')), class: 'swipebox', rel: 'bed-1' do %>
-                  <%= image_tag ("computador.jpg"), alt: 'image' %>
-                <% end %>
-                <span class="card-title white-text right-align" style="z-index: 1;">1 <i class="fa fa-user" aria-hidden="true" style="margin-left: 5px;"></i></span>
-              </div>
-              <div class="card-content" style="min-height: 25vh;">
-                <div class="booking-info">
-                  <span class="black-text first-booking-text" style="float: left;">Mixed dorm 11 beds (spacious!)</span>
-                  <span class="red-text second-booking-text" style="float: right; text-decoration: line-through;">R$ 200,00</span>
-                </div>
-                <!-- <p class="booking-text" style="margin-bottom: 10px;"></p> -->
-                <div class="booking-info">
-                  <span class="red-text first-booking-text">DESCONTO 5%</span>
-                  <span class="black-text first-booking-text">R$ 190,00</span>
-                </div>
-                <!-- <p class="booking-text"></p> -->
-                <div class="input-field col s6 m4" style="padding: 0px; float: left;">
-                  <select>
-                    <option value="0" selected>Quantas camas?</option>
-                    <option value="1">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3 </option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="input-field col s6 m6" id="month-expiration">
+        <select>
+          <option value="1">01</option>
+          <option value="2">02</option>
+          <option value="3">03</option>
+          <option value="4">04</option>
+          <option value="5">05</option>
+          <option value="6">06</option>
+          <option value="7">07</option>
+          <option value="8">08</option>
+          <option value="9">09</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
+        <label>Mês</label>
       </div>
-      <div id="test2" class="col s12">Test 2</div>
-      <div id="test3" class="col s12">Test 3</div>
-      <div class="container">
-        <form class="col s12 overlay-form">
-          <h5>Identifiação</h5>
+      <div class="input-field col s6 m6" id="year-expiration">
+        <select>
+          <option value="2017">2017</option>
+          <option value="2018">2018</option>
+          <option value="2019">2019</option>
+          <option value="2020">2020</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+          <option value="2023">2023</option>
+          <option value="2024">2024</option>
+          <option value="2025">2025</option>
+          <option value="2026">2026</option>
+          <option value="2027">2027</option>
+          <option value="2028">2028</option>
+          <option value="2029">2029</option>
+          <option value="2030">2030</option>
+          <option value="2031">2031</option>
+          <option value="2032">2032</option>
+          <option value="2033">2033</option>
+          <option value="2034">2034</option>
+          <option value="2035">2035</option>
+          <option value="2036">2036</option>
+          <option value="2037">2037</option>
+        </select>
+        <label>Ano</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="security-code" type="text" class="validate" pattern="[0-9]+" minlength="3">
+        <label for="security-code" data-error="Código de Segurança inválido">Código de Segurança</label>
+      </div>
+      <div class="col s12">
+        <input type="checkbox" id="terms-and-conditions" checked="checked" onchange="checkTermsAndConditions()" />
+        <label for="terms-and-conditions">Eu li e aceito todos os termos e condições de hospedagem.</label>
+      </div>
+      <div class="container center-align">
+        <a style="cursor: pointer; margin: 30px auto;" class="btn btn-large waves-effect waves-light amber" id="confirm-booking" disabled>confirmar reserva</a>
+      </div>
+      <%= render 'partials/guest_info_errors' %>
+      <p class="right-align" style="font-size: 0.8em;">Se você não receber um e-mail dentro de 24 hrs, por favor cheque na sua  lixeira eletrônica.</p>
+    </form>
+  </div> -->
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col s12 m4">
+      <div class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <%= image_tag ("computador.jpg"), alt: 'image' %>
+        </div>
+        <div class="card-content" style='height: 120px; position: relative;'>
+          <span class="activator grey-text text-darken-4" style="font-size: 16px; font-weight: 400; position: absolute; top: 15px; left: 15px;">Quarto Casal</span>
+          <span style="position: absolute; top: 7px; right: 7px">2 noites</span>
+          <span style="position: absolute; bottom: 14px; right: 12px;">Valor total R$ 224,00</span>
+          <a style="cursor: pointer; cursor: pointer; position: absolute; top: 0; bottom: 0; right: 0; left: 0;" class="activator"></a>
+          <a style="cursor: pointer; position: absolute; bottom: 10px; left: 10px" class="activator"><i class="material-icons tiny">close</i>Detalhes</a>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
           <div class="row">
-            <div class="input-field col s12 m6">
-              <input id="first_name" type="text" class="validate">
-              <label for="first_name" data-error="wrong" data-success="right">Nome</label>
+            <div class="col s6 date-content" style="display: flex; flex-direction: column; align-items: center; margin: 10px auto;">
+              <span style="margin: 3px auto;">Chegada:</span>
+              <span>10/08/2016</span>
             </div>
-            <div class="input-field col s12 m6">
-              <input id="last_name" type="text" class="validate">
-              <label for="last_name" data-error="wrong" data-success="right">Sobrenome</label>
+            <div class="col s6 date-content" style="display: flex; flex-direction: column; align-items: center; margin: 10px auto;">
+              <span style="margin: 3px auto;">Partida:</span>
+              <span>12/08/2016</span>
             </div>
-            <div class="input-field col s12 m6">
-              <input id="email" type="text" class="validate">
-              <label for="email" data-error="wrong" data-success="right">E-mail</label>
+            <div class="col s12" style="display: flex; justify-content: space-around; margin: 10px auto;">
+              <span>1 cama</span><span>2 noites</span>
             </div>
-            <div class="input-field col s12 m6">
-              <input id="confirm_email" type="text" class="validate">
-              <label for="confirm_email" data-error="wrong" data-success="right">Confirmação de E-mail</label>
+            <div class="col s12" style="display: flex; flex-direction: column; align-items: center; margin: 10px auto;">
+              <span style="margin: 3px auto;">Subtotal: R$ 200,00</span>
+              <span id="increaseBreakfast">(+) Café da manhã: BRL: R$ 24</span>
             </div>
-            <div class="input-field col s12 m6">
-              <input id="phone" type="text" class="validate">
-              <label for="phone" data-error="wrong" data-success="right">Telefone</label>
-            </div>
-            <div class="input-field col s12 m6">
-              <select>
-                <option value="" disabled selected>Choose your option</option>
-                <% COUNTRIES.each do |country| %>
-                <option value="<%= country %>"><%= country %></option>
-                <% end %>
-              </select>
-              <label>País</label>
-            </div>
-            <div class="input-field col s12">
-              <textarea id="textarea1" class="materialize-textarea"></textarea>
-              <label for="textarea1">Notas:</label>
-            </div>
+            <span style="position: absolute; bottom: 12px; right: 12px; font-weight: 600; font-size: 14px;">Valor total: R$ 224,00</span>
           </div>
-          <h5>Café da manhã</h5>
-          <div class="col s12">
-            <input type="checkbox" id="test5" />
-            <label for="test5">Adicionar café da manhã por mais BRL 12.00 por hóspede por noite.</label>
-          </div>
-          </p>
-          <h5>Cupom de Desconto</h5>
-          <div class="input-field col s12">
-            <input id="phone" type="text" class="validate">
-            <label for="phone" data-error="wrong" data-success="right">Código</label>
-          </div>
-          <h5>Pagamento</h5>
-          <div class="col s12">
-            <input type="checkbox" id="test7" checked="checked" disabled="disabled" />
-            <label for="test7">Cartão de Crédito</label>
-          </div>
-          <div class="input-field col s12 m6">
-            <input id="credit-card-name" type="text" class="validate">
-            <label for="credit-card-name" data-error="wrong" data-success="right">Nome</label>
-          </div>
-          <div class="input-field col s12 m6">
-            <input id="credit-card-number" type="text" class="validate">
-            <label for="credit-card-number" data-error="wrong" data-success="right">Nº Cartão de Crédito</label>
-          </div>
-          <div class="input-field col s6 m6">
-            <select>
-              <option value="" disabled selected>Choose your option</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-            </select>
-            <label>Mês</label>
-          </div>
-          <div class="input-field col s6 m6">
-            <select>
-              <option value="" disabled selected>Choose your option</option>
-              <option value="2017">2017</option>
-              <option value="2018">2018</option>
-              <option value="2019">2019</option>
-              <option value="2020">2020</option>
-              <option value="2021">2021</option>
-              <option value="2022">2022</option>
-              <option value="2023">2023</option>
-              <option value="2024">2024</option>
-              <option value="2025">2025</option>
-              <option value="2026">2026</option>
-              <option value="2027">2027</option>
-              <option value="2028">2028</option>
-              <option value="2029">2029</option>
-              <option value="2030">2030</option>
-              <option value="2031">2031</option>
-              <option value="2032">2032</option>
-              <option value="2033">2033</option>
-              <option value="2034">2034</option>
-              <option value="2035">2035</option>
-              <option value="2036">2036</option>
-              <option value="2037">2037</option>
-            </select>
-            <label>Ano</label>
-          </div>
-          <div class="input-field col s12">
-            <input id="security-code" type="text" class="validate">
-            <label for="security-code" data-error="wrong" data-success="right">Código de Segurança</label>
-          </div>
-          <div class="col s12">
-            <input type="checkbox" id="test6" checked="checked" />
-            <label for="test6">Eu li e aceito todos os termos e condições de hospedagem.</label>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<%= render 'partials/terms_and_conditions' %>
+<%= javascript_include_tag 'booking.js' %>
+
