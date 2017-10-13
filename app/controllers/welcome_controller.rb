@@ -2,7 +2,7 @@ require 'open-uri'
 require 'json'
 
 class WelcomeController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :about, :contact, :work, :booking]
+  skip_before_action :authenticate_user!, only: [:index, :about, :contact, :work, :booking, :confirm]
 
   def index
     if request.xhr?
@@ -72,7 +72,9 @@ class WelcomeController < ApplicationController
         images: @images,
         names: @names,
         prices: @prices,
-        units: @units
+        units: @units,
+        arrive: params[:arrival],
+        departure: params[:departure]
       }
 
       respond_to do |format|
@@ -94,6 +96,40 @@ class WelcomeController < ApplicationController
   end
 
   def work
+  end
+
+  def confirm
+    if request.xhr? && request.method == "POST"
+      # guest_country = params['guest_country']
+      # guest_notes = params['guest_notes']
+      # guest_breakfast = params['guest_breakfast']
+      # guest_breakfast_value = params['guest_breakfast_value']
+      # guest_discount_code = params['guest_discount_code']
+      # guest_credit_card_name = params['guest_credit_card_name']
+      # guest_credit_card_number = params['guest_credit_card_number']
+      # month_expiration_date = params['month_expiration_date']
+      # year_expiration_date = ['year_expiration_date']
+      # security_code = params['security_code']
+
+      guest = Guest.new(first_name: params['first_name'],
+                        last_name: params['last_name'],
+                        email: params['guest_email'],
+                        phone: params['guest_phone'],
+                        country: params['guest_country'],
+                        notes: params['guest_notes'],
+                        breakfast: params['breakfast'],
+                        descount_cupom: params['descount_cupom'])
+      guest.save!
+
+      @result = {
+        success: 'success'
+      }
+
+      respond_to do |format|
+        format.json { render json: @result }
+        format.html
+      end
+    end
   end
 
 end

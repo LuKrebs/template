@@ -42,10 +42,7 @@ $(document).ready(function() {
     e.preventDefault();
     $("ul li.error-message").slideUp("fast");
   });
-
-
 });
-
 function navbarFixedFunction() {
   var searchBarHeight = parseInt($("#fixedBookingRow").css("height").replace("px", ""));
   var searchBarPosition = $("#fixedBookingRow").position()['top'];
