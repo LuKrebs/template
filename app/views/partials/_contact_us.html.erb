@@ -4,23 +4,32 @@
   </div>
   <div class="col s10 offset-s1 m8 offset-m2">
     <div class="row form-contact">
-      <%= simple_form_for @message, url: messages_path  do |f| %>
-        <div class="input-field col s12 m6">
-          <%= f.input :name, class: 'validate', label: "Nome" %>
+      <div class="input-field col s12 m6">
+        <input id="name" type="text" class="validate" pattern="[a-zA-Z\s]+" minlength="2">
+        <label for="name" data-error="Nome inválido">Nome</label>
+      </div>
+      <div class="input-field col s12 m6">
+        <input id="email" type="email" class="validate">
+        <label for="email" data-error="E-mail inválido">E-mail</label>
+      </div>
+      <div class="input-field col s12">
+        <textarea id="subject" class="materialize-textarea" minlength="2"></textarea>
+        <label for="subject">Assunto</label>
+      </div>
+      <div class="input-field col s12">
+        <textarea id="message" class="materialize-textarea" minlength="2"></textarea>
+        <label for="message">Mensagem</label>
+      </div>
+      <div class="row center-align">
+        <a class="waves-effect waves-light btn btn-large center-align amber" id="send-message" style="cursor: pointer;">enviar</a>
+      </div>
+      <%= render 'partials/message_errors' %>
+      <div class="row">
+        <div class="col s12">
+          <h5 class="center-align" id="success-message" style="display: none;">Sua mensagem foi enviada com sucesso! Entraremos em contato o mais breve possível!</h5>
         </div>
-        <div class="input-field col s12 m6">
-          <%= f.input :email, class: 'validate', label: "Email" %>
-        </div>
-        <div class="input-field col s12">
-          <%= f.input :subject, class: 'materialize-textarea', label: "Assunto" %>
-        </div>
-        <div class="input-field col s12">
-          <%= f.input :content, class: 'materialize-textarea', label: "Mensagem" %>
-        </div>
-        <div class="center-align">
-          <%= f.button :submit, id: 'send-message', class: 'amber' %>
-        </div>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
+

@@ -1,6 +1,7 @@
 $(document).ready(function() {
   $("#booking").click(function() {
     $(".booking_cards").empty();
+    $(".card-info-booking").empty()
     var arrival = $("#arrival").val();
     var departure = $("#departure").val();
     $("#arrival-info").empty()
@@ -89,6 +90,7 @@ $(document).ready(function() {
   $("#booking_overlay_page").click(function() {
     var arrival = $("#arrival_overlay_page").val();
     var departure = $("#departure_overlay_page").val();
+    $(".card-info-booking").empty()
     $("#myNav").animate({scrollTop:0},"slow")
     $("li.error-message i").css('color', 'white');
     if (arrival == "") {
@@ -113,6 +115,7 @@ $(document).ready(function() {
     $(".info-content span.text-active").removeClass("text-active");
     $(".info-content:nth-child(1) i").addClass("item-active");
     $(".info-content:nth-child(1) span").addClass("text-active");
+    $(".dates-info").slideDown('fast')
     $.ajax({
       // url: 'http://localhost:3000',
       url: "https://template-hq.herokuapp.com/",
@@ -188,56 +191,53 @@ $(document).ready(function() {
       var price = $(this).text()
       var numberOfBeds = $("input.select-dropdown")[index].value;
       var name = $(".first-booking-text")[index].innerText;
-      price = parseFloat(price.replace("R$", ""))
+      price = parseFloat(price.replace("R$", "")).toFixed(2)
       numberOfBeds = parseInt(numberOfBeds);
       if (!(isNaN(numberOfBeds))) {
         if (numberOfBeds >= 1) {
-          var totalPrice = price * numberOfBeds
+          var totalPrice = (price * numberOfBeds).toFixed(2)
           var image = $(".card-image img")[index]
           var imageSrc = image.attributes['src'].value
           bedsAndPrices.push([price, numberOfBeds, name, totalPrice, imageSrc, numberOfNights, $("#arrival-info").text(), $("#departure-info").text(), numberOfNights]);
-          card += "<div class='col s12 m4 offset-m4'>\
-                    <div class='card'>\
-                      <div class='card-image waves-effect waves-block waves-light'>\
-                        <img src='" + bedsAndPrices[0][4] + "'></a>\
-                      </div>\
-                      <div class='card-content' style='height: 120px; position: relative;'>\
-                        <span class='activator grey-text text-darken-4' style='font-size: 16px; font-weight: 400; position: absolute; top: 15px; left: 15px;'>" + bedsAndPrices[0][2] + "</span>\
-                        <span style='position: absolute; top: 7px; right: 7px'>"+ bedsAndPrices[0][5] + " noites</span>\
-                        <span style='position: absolute; bottom: 14px; left: 12px;'>Valor total R$ " + bedsAndPrices[0][3] + "0</span>\
-                        <a style='cursor: pointer; cursor: pointer; position: absolute; top: 0; bottom: 0; right: 0; left: 0;' class='activator'></a>\
-                        <a class='btn-floating btn waves-effect waves-light amber activator' style='cursor: pointer; position: absolute; bottom: 10px; right: 10px'><i class='material-icons'>add</i></a>\
-                      </div>\
-                      <div class='card-reveal'>\
-                        <span class='card-title grey-text text-darken-4' style='font-size: 16px;'>" + bedsAndPrices[0][2] + "<i class='material-icons right'>close</i></span>\
-                        <div class='row' style='margin-top: 20px;'>\
-                          <div class='col s12 date-content' style='display: flex; justify-content: space-between; margin: 10px auto;'>\
-                            <div><span style='margin: 3px auto;'>Chegada:</span></div>\
-                            <div><span>" + bedsAndPrices[0][6] + "</span></div>\
-                          </div>\
-                          <div class='col s12 date-content' style='display: flex; justify-content: space-between; margin: 10px auto;'>\
-                            <div><span style='margin: 3px auto;'>Partida:</span></div>\
-                            <div><span>" + bedsAndPrices[0][7] + "</span></div>\
-                          </div>\
-                          <div class='col s12' style='display: flex; justify-content: space-around; margin: 10px auto;'>\
-                            <span>1 cama</span><span>" + bedsAndPrices[0][5] +  " noites</span>\
-                          </div>\
-                          <div class='col s12' style='display: flex; flex-direction: column; align-items: center; margin: 10px auto;'>\
-                            <span style='margin: 3px auto;'>Subtotal: R$ " + bedsAndPrices[0][3] + "0</span>\
-                            <span id='increaseBreakfast' style='display: none'>(+) Café da manhã: BRL: R$ " + (12 * bedsAndPrices[0][1] * bedsAndPrices[0][5]) + "</span>\
-                          </div>\
-                          <span style='position: absolute; bottom: 12px; right: 12px; font-weight: 600; font-size: 14px;'>Valor total: R$ " + bedsAndPrices[0][3] + "0</span>\
+          card += "<div class='card'>\
+                    <div class='card-image waves-effect waves-block waves-light'>\
+                      <img src='" + bedsAndPrices[0][4] + "'></a>\
+                    </div>\
+                    <div class='card-content' style='height: 120px; position: relative;'>\
+                      <span class='activator grey-text text-darken-4 room-name' style='font-size: 16px; font-weight: 400; position: absolute; top: 15px; left: 15px;'>" + bedsAndPrices[0][2] + "</span>\
+                      <span style='position: absolute; top: 7px; right: 7px'><span id='number-of-nights'>"+ bedsAndPrices[0][5] + "</span> noites</span>\
+                      <span style='position: absolute; bottom: 14px; left: 12px;'>Valor total R$ <span class='total-value-card'>" + bedsAndPrices[0][3] + "</span></span>\
+                      <a style='cursor: pointer; cursor: pointer; position: absolute; top: 0; bottom: 0; right: 0; left: 0;' class='activator'></a>\
+                      <a class='btn-floating btn waves-effect waves-light amber activator' style='cursor: pointer; position: absolute; bottom: 10px; right: 10px'><i class='material-icons'>add</i></a>\
+                    </div>\
+                    <div class='card-reveal'>\
+                      <span class='card-title grey-text text-darken-4' style='font-size: 16px;'>" + bedsAndPrices[0][2] + "<i class='material-icons right'>close</i></span>\
+                      <div class='row' style='margin-top: 10px;'>\
+                        <div class='col s12 date-content' style='display: flex; justify-content: space-between; margin: 10px auto;'>\
+                          <div><span style='margin: 3px auto;'>Chegada:</span></div>\
+                          <div><span style='font-weight: 900;' class='arrive-date-card'>" + bedsAndPrices[0][6] + "</span></div>\
                         </div>\
+                        <div class='col s12 date-content' style='display: flex; justify-content: space-between; margin: 10px auto;'>\
+                          <div><span style='margin: 3px auto;'>Partida:</span></div>\
+                          <div><span style='font-weight: 900;' class='departure-date-card'>" + bedsAndPrices[0][7] + "</span></div>\
+                        </div>\
+                        <div class='col s12' style='display: flex; justify-content: space-around; margin: 5px auto;'>\
+                          <span id='number-of-units'>" + bedsAndPrices[0][1] + " cama(s)</span><span id='number-of-nights'>" + bedsAndPrices[0][5] +  " noites</span>\
+                        </div>\
+                        <div class='col s12' style='display: flex; flex-direction: column; align-items: center; margin: 10px auto;'>\
+                          <span style='margin: 3px auto;'>Subtotal: R$ <span id='subtotal'>" + bedsAndPrices[0][3] + "</span></span>\
+                          <span id='increaseBreakfast' style='display: none; font-size: 12px;'>(+) Café da manhã: BRL: R$ <span id='breakfast-card-value'></></span>\
+                        </div>\
+                        <span style='position: absolute; bottom: 12px; right: 12px; font-weight: 600; font-size: 14px;'>Valor total: R$ <span class='total-value-card'>" + bedsAndPrices[0][3] + "</span></span>\
                       </div>\
                     </div>\
-                  <div>"
+                  </div>"
         }
-        console.log(card);
         console.log(bedsAndPrices)
       }
     });
     $(".booking_cards").empty();
-    $(".booking_cards").append(card)
+    $(".card-info-booking").append(card)
     $(".dates-info").css('display', 'none')
     $(".form-to-booking").slideDown("fast");
     $(".info-content i.item-active").removeClass("item-active")
@@ -245,9 +245,6 @@ $(document).ready(function() {
     $(".info-content:nth-child(2) i").addClass("item-active")
     $(".info-content:nth-child(2) span").addClass("text-active")
     $(".rentButton").slideUp("fast");
-    $(".card-panel").remove()
-    $(".google-maps").empty()
-    $(".google-maps").append(card)
   });
   $("#confirm-booking").click(function() {
     var firstName = $("#first_name").val();
@@ -309,6 +306,13 @@ $(document).ready(function() {
     } else {
       $(".errors-text .security-code-error").slideUp('fast')
     }
+    var totalValue = $(".total-value-card").first().text()
+    var arrive = $(".arrive-date-card").text()
+    var departure = $(".departure-date-card").text()
+    var subtotal = $("#subtotal").text()
+    var breakfast = $('#breakfast').prop('checked');
+    var breakfastValue = $("#breakfast-card-value").text();
+    var room = $(".room-name").text()
     $.ajax({
       // url: 'http://localhost:3000/confirm',
       url: "https://template-hq.herokuapp.com/confirm",
@@ -323,14 +327,34 @@ $(document).ready(function() {
         notes: guestNotes,
         breakfast: guestBreakfast,
         descount_cupom: guestDiscountCode,
-        credit_card_name: guestCreditCardName,
-        credit_card_number: guestCreditCardNumber,
-        month_expiration_date: monthExpirationDate,
-        year_expiration_date: yearExpirationDate,
-        security_code: securityCode
+        arrive: arrive,
+        departure: departure,
+        subtotal_price: subtotal,
+        breakfast: breakfast,
+        breakfast_value: breakfastValue,
+        total_price: totalValue,
+        room: room
       }
     }).success(function(response){
       console.log(response);
+      if (response.status) {
+        $("#myNav").animate({scrollTop:$('.form-to-booking').first().position()['top']},"slow")
+        $(".info-content i.item-active").removeClass("item-active")
+        $(".info-content span.text-active").removeClass("text-active")
+        $(".info-content:nth-child(3) i").addClass("item-active")
+        $(".info-content:nth-child(3) span").addClass("text-active")
+        $(".form-to-booking").empty()
+        $(".popout").slideUp('fast')
+        var thanksMessage = "<h3 class='center-align' style='font-size: 2.22rem;'>Obrigado por escolher o <span class='notranslate'>Café Hostel</span>.</h3>"
+        var spanMessage = "<h5 class='center-align' style='font-size: 1.44rem;'>Se você não receber um e-mail dentro de 24 hrs, por favor cheque na sua lixeira eletrônica.</h5>"
+        $(".form-to-booking").css('backgroundColor', 'rgb(240,240,240)');
+        $(".form-to-booking").css('border-radius', '2px')
+        $(".form-to-booking").css('padding', '25px 0');
+        $(".form-to-booking").append(thanksMessage)
+        $(".form-to-booking").append(spanMessage)
+      } else {
+
+      }
     }).error(function(response){
       // console.log(response)
     });
@@ -373,4 +397,30 @@ function checkEmailConfirmation(){
      $("#confirm_email").addClass('invalid')
     }
   }, 200);
+}
+function increaseBreakfastValue(){
+  var subtotal = parseFloat($("#subtotal").text().replace("R$", "")).toFixed(2)
+  var numberOfNights = parseInt($("#number-of-nights").text())
+  var numberOfUnits = parseInt($("#number-of-units").text())
+  var breakfastValue = (12 * numberOfNights * numberOfUnits)
+  var totalBookingValue = (parseFloat(breakfastValue) + parseFloat(subtotal)).toFixed(2)
+  if ($("#breakfast").prop('checked')) {
+    $(".subtotalValue").empty()
+    $(".breakfast-total-price").empty()
+    $(".total-booking-value").empty()
+    $(".total-value-card").empty()
+    $("#breakfast-card-value").empty()
+    $("#breakfastIncrease").slideDown('fast')
+    $(".subtotalValue").append(subtotal)
+    $(".breakfast-total-price").append(breakfastValue)
+    $(".total-booking-value").append(totalBookingValue)
+    $(".total-value-card").append(totalBookingValue)
+    $("#increaseBreakfast").slideDown('fast')
+    $("#breakfast-card-value").append(breakfastValue)
+  } else {
+    $("#breakfastIncrease").slideUp('fast')
+    $("#increaseBreakfast").slideUp('fast')
+    $(".total-value-card").empty()
+    $(".total-value-card").append(subtotal)
+  }
 }
