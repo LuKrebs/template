@@ -34,7 +34,6 @@ $(document).ready(function() {
       dataType: "json",
       data: {arrival: arrival, departure: departure}
     }).success(function(response){
-        console.log(response);
         $("#arrival-info").empty()
         $("#departure-info").empty()
         $("#arrival-info").append(response.arrive)
@@ -90,7 +89,7 @@ $(document).ready(function() {
   $("#booking_overlay_page").click(function() {
     var arrival = $("#arrival_overlay_page").val();
     var departure = $("#departure_overlay_page").val();
-    $(".card-info-booking").empty()
+    $(".card-info-booking").empty();
     $("#myNav").animate({scrollTop:0},"slow")
     $("li.error-message i").css('color', 'white');
     if (arrival == "") {
@@ -170,8 +169,8 @@ $(document).ready(function() {
                       </div>\
                     </div>";
         $(".booking_cards").append(card);
-        $(".rentButton").slideDown('fast');
-        $(".rentButton").attr('disabled', 'disabled');
+        // $(".rentButton").slideDown('fast');
+        // $(".rentButton").attr('disabled', 'disabled');
         $(".booking-text").css('display', 'inherit');
         $('select').material_select();
       }
@@ -181,6 +180,7 @@ $(document).ready(function() {
   });
   $(".rentButton").click(function(){
     $("#myNav").animate({scrollTop:$('form h5').first().position()['top']},"slow")
+    $(".form-overlay").slideUp('fast')
     var bedsAndPrices = [];
     var card = "";
     var one_day=1000*60*60*24;
@@ -199,7 +199,7 @@ $(document).ready(function() {
           var image = $(".card-image img")[index]
           var imageSrc = image.attributes['src'].value
           bedsAndPrices.push([price, numberOfBeds, name, totalPrice, imageSrc, numberOfNights, $("#arrival-info").text(), $("#departure-info").text(), numberOfNights]);
-          card += "<div class='card'>\
+          card += "<div class='card' style='min-height: 320px;'>\
                     <div class='card-image waves-effect waves-block waves-light'>\
                       <img src='" + bedsAndPrices[0][4] + "'></a>\
                     </div>\
@@ -345,8 +345,8 @@ $(document).ready(function() {
         $(".info-content:nth-child(3) span").addClass("text-active")
         $(".form-to-booking").empty()
         $(".popout").slideUp('fast')
-        var thanksMessage = "<h3 class='center-align' style='font-size: 2.22rem;'>Obrigado por escolher o <span class='notranslate'>Café Hostel</span>.</h3>"
-        var spanMessage = "<h5 class='center-align' style='font-size: 1.44rem;'>Se você não receber um e-mail dentro de 24 hrs, por favor cheque na sua lixeira eletrônica.</h5>"
+        var thanksMessage = "<h3 class='center-align thanks-message' style='font-size: 2.22rem;'>Obrigado por escolher o <span class='notranslate'>Café Hostel</span>.</h3>";
+        var spanMessage = "<h5 class='center-align thanks-message' style='font-size: 1.44rem;'>Se você não receber um e-mail dentro de 24 hrs, por favor cheque na sua lixeira eletrônica.</h5>";
         $(".form-to-booking").css('backgroundColor', 'rgb(240,240,240)');
         $(".form-to-booking").css('border-radius', '2px')
         $(".form-to-booking").css('padding', '25px 0');
@@ -359,16 +359,73 @@ $(document).ready(function() {
       // console.log(response)
     });
   });
+  $('.datepicker').pickadate({
+    today: 'Hoje',
+    clear: 'Limpar',
+    close: 'Ok',
+    closeOnSelect: true
+  });
+  $(".button-collapse").sideNav({
+      menuWidth: 300,
+      edge: 'left',
+      closeOnClick: true,
+      draggable: true,
+  });
+  $('.carousel').carousel();
+  $('.scrollspy').scrollSpy();
+  $('.swipebox').swipebox();
+  $('select').material_select();
+  $('.collapsible').collapsible();
+  $("#arrival").on('change', function(){
+    var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+    var arrival = $("#arrival").val();
+    var result = new Date(arrival);
+    result.setDate(result.getDate() + 2);
+    if (arrival == "") {
+      return $("#departure").val("");
+    }
+    $("#departure").val(result.getDate().toString() + " " + monthNames[result.getMonth()] + " " + result.getFullYear().toString());
+    $("label[for=departure]").addClass('active');
+  });
+  $("#arrival_overlay_page").on('change', function(){
+    var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+    var arrival = $("#arrival_overlay_page").val();
+    var result = new Date(arrival);
+    result.setDate(result.getDate() + 2);
+    if (arrival == "") {
+      return $("#departure_overlay_page").val("");
+    }
+    $("#departure_overlay_page").val(result.getDate().toString() + " " + monthNames[result.getMonth()] + " " + result.getFullYear().toString());
+    $("label[for=departure_overlay_page]").addClass('active');
+  });
+  $(".error-message i").on('click', function(e) {
+    e.preventDefault();
+    $("ul li.error-message").slideUp("fast");
+  });
+  $(".rent-button").click(function(){
+    $("#myNav").css('width', "100%")
+  });
+  $(".home-content").click(function(){
+    $(".form-to-booking").slideUp("fast");
+    $(".form-overlay").slideDown('fast');
+    $(".card-info-booking").empty();
+    $(".info-content i.item-active").removeClass("item-active");
+    $(".info-content span.text-active").removeClass("text-active");
+    $(".info-content:nth-child(1) i").addClass("item-active");
+    $(".info-content:nth-child(1) span").addClass("text-active");
+  });
 });
 function ableButton(){
   $(".rentButton").attr('disabled', 'disabled');
+  $(".rentButton").slideUp('fast');
   $(".booking-text").css('display', 'inherit');
   $(".units-number input.select-dropdown").each(function(index){
     var bed = $( this ).val()
     if (!isNaN(bed)) {
       if (bed > 0) {
         $(".booking-text").css('display', 'none');
-        return $(".rentButton").removeAttr('disabled');
+        $(".rentButton").removeAttr('disabled');
+        return $(".rentButton").slideDown('fast');
       }
     }
   });
@@ -423,4 +480,55 @@ function increaseBreakfastValue(){
     $(".total-value-card").empty()
     $(".total-value-card").append(subtotal)
   }
+}
+function navbarFixedFunction() {
+  var searchBarHeight = parseInt($("#fixedBookingRow").css("height").replace("px", ""))
+  var searchBarPosition = $("#fixedBookingRow").position()['top']
+  var bodyScrollTop = $("body").scrollTop()
+
+  if (bodyScrollTop > searchBarHeight + searchBarPosition) {
+    if ($(window).width() < 600) {
+      $(".mobileAndWidthSmallHide").hide();
+      $("#booking").attr('onclick', 'backToTop()')
+    } else {
+      $("#booking").removeAttr('onclick')
+    }
+    $("#fixedBookingRow").css("position", "fixed")
+    $("#fixedBookingRow").css("top", "0")
+    $("#fixedBookingRow").css("right", "0")
+    $("#fixedBookingRow").css("left", "0")
+    $("#fixedBookingRow").css("margin", "auto")
+    $("#fixedBookingRow").css("z-index", "100")
+    $("#fixedBookingRow").css("backgroundColor", "rgba(0,0,0,0.9)")
+    $(".bookRowInside").css("marginBottom", '0px')
+    $(".bookRow").css("marginBottom", '0px')
+    $(".input-field .material-icons.prefix").css('color', 'white')
+  }
+  else {
+    var display = $(".mobileAndWidthSmallHide").css('display');
+    if ($(window).width() < 425) {
+      $(".mobileAndWidthSmallHide").show();
+    }
+    else if ($(window).width() > 425 && display == "none") {
+      $(".mobileAndWidthSmallHide").show();
+    }
+    $("#fixedBookingRow").css("backgroundColor", "transparent");
+    $("#fixedBookingRow").css("position", "relative");
+    $("#fixedBookingRow").css("margin-bottom", "20vh");
+    $(".bookRowInside").css("marginBottom", '20px');
+    $(".bookRow").css("marginBottom", '20px');
+    $(".input-field .material-icons.prefix").css('color', "rgba(0, 0, 0, 0.87)");
+  }
+}
+function closeNav() {
+  document.getElementById("myNav").style.width = "0%";
+  $(".rentButton").slideUp('fast');
+  $(".thanks-message").empty();
+  $(".card-info-booking").empty();
+  $(".info-content i.item-active").removeClass("item-active");
+  $(".info-content span.text-active").removeClass("text-active");
+  $(".form-to-booking").css('backgroundColor', 'white');
+}
+function backToTop() {
+  $("body").animate({scrollTop:0},"slow")
 }

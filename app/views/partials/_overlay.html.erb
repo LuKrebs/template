@@ -1,44 +1,27 @@
-<div id="myNav" class="overlay">
+<div id="myNav" class="overlay" style="background-image: url('<%= image_path ('bg_overlay.jpg') %>');">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <div class="overlay-content">
     <div class="container-fluid">
       <div class="row">
-        <div class="col s12 m12" id="booking">
+        <div class="col s12 m12">
           <%= render 'partials/header_overlay.html.erb' %>
-          <div class="container dates-info" style="display: none;">
-            <div class="row" style="margin-bottom: 0 !important;">
-              <div class="col s12 m6">
-                <blockquote style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                  <h5 class="black-text center-align">Data de chegada:</h5>
-                  <h5><strong id="arrival-info"></strong></h5>
-                </blockquote>
-              </div>
-              <div class="col s12 m6">
-                <blockquote style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                  <h5 class="black-text center-align">Data de partida:</h5>
-                  <h5><strong id="departure-info"></strong></h5>
-                </blockquote>
-              </div>
-            </div>
+          <div class="row" style="margin-top: 30px;">
+            <%= render 'partials/form_overlay' %>
           </div>
           <div class="row booking_cards">
           </div>
-          <div class="row">
+          <div class="row form-guest">
             <div class="col s12 m4 card-info-booking">
             </div>
             <div class="col s12 m8">
               <%= render 'partials/guest_form' %>
             </div>
           </div>
-          <div class="container center-align">
-            <a style="cursor: pointer;" class="btn btn-large waves-effect waves-light amber modal-trigger rentButton" disabled >reservar</a>
-            <p class="booking-text" style="font-size: 0.8em;">Para reservar, escolhe um quarto.</p>
-          </div>
+          <a style="display: none; cursor: pointer; position: fixed; bottom: 20px; right: 20px;" class="btn btn-large waves-effect waves-light amber modal-trigger rentButton" disabled >reservar</a>
         </div>
       </div>
     </div>
-    <%= render 'partials/extra_info_overlay' %>
-    <div class="row">
+    <div class="row" style="background-color: white;">
       <%= render 'partials/terms_and_conditions' %>
     </div>
   </div>
