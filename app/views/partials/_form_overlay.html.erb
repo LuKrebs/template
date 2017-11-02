@@ -1,20 +1,30 @@
 <form class="col m12 form-overlay">
-  <div class="row" >
-    <div class="input-field col s12 m4">
+  <div class="row" style="margin-bottom: 0; margin-top: 20px;">
+    <div class="input-field col s12 m4 offset-m1">
       <i class="material-icons prefix" for="arrival">date_range</i>
-      <input id ="arrival_overlay_page" type="text" class="datepicker">
+      <input id ="arrival_overlay_page" type="text" class="datepicker" style="margin-bottom: 5px;">
       <label for="arrival_overlay_page">Data de chegada</label>
+      <div class="row" style="display: flex; align-items: center; justify-content: center;">
+        <blockquote style="margin: 0; min-height: 35px;">
+          <h5 style="font-size: 1.34rem;"><strong id="arrival-info"></strong></h5>
+        </blockquote>
+      </div>
     </div>
     <div class="input-field col s12 m4">
       <i class="material-icons prefix" for="arrival">date_range</i>
-      <input id="departure_overlay_page" type="text" class="datepicker">
+      <input id="departure_overlay_page" type="text" class="datepicker" style="margin-bottom: 5px;">
       <label for="departure_overlay_page">Data de partida</label>
+      <div class="row" style="display: flex; align-items: center; justify-content: center;">
+        <blockquote style="margin: 0; min-height: 35px;">
+          <h5 style="font-size: 1.34rem;"><strong id="departure-info"></strong></h5>
+        </blockquote>
+      </div>
     </div>
-    <div class="col s12 m4" style="text-align: center;">
+    <div class="col s12 m1" style="text-align: center;">
       <a style="cursor: pointer;" id="booking_overlay_page" class="btn btn-large waves-effect waves-light amber modal-trigger">pesquisar</a>
     </div>
   </div>
-  <div class="row">
+  <div class="row" style="margin-bottom: 0;">
     <%= render 'partials/errors_overlay' %>
   </div>
 </form>
