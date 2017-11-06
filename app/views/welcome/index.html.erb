@@ -7,7 +7,6 @@
     <%= render 'partials/welcome_images' %>
   </div>
 </section>
-
 <section>
   <div class="container-fluid" style="min-height: 90vh; background-color: white;">
     <div class="container" style="width: 90% !important">
@@ -17,4 +16,5 @@
     </div>
   </div>
 </section>
-<%= video_tag "home.mp4", autoplay: :autoplay, muted: :muted, loop: :loop, class: "video", poster: "bgvideo.png", id: 'home_video' %>
+<video src="<%= video_path ('home.mp4') %>" id="home_video" class="video" muted loop poster="<%= image_path ('bgvideo.png') %>">
+</video>

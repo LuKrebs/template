@@ -28,8 +28,8 @@ $(document).ready(function() {
     var arrival = $("#arrival").val();
     var departure = $("#departure").val();
     $.ajax({
-      // url: 'http://localhost:3000',
-      url: "https://template-hq.herokuapp.com/",
+      url: 'http://localhost:3000',
+      // url: "https://template-hq.herokuapp.com/",
       method: "GET",
       dataType: "json",
       data: {arrival: arrival, departure: departure}
@@ -116,13 +116,12 @@ $(document).ready(function() {
     $(".info-content:nth-child(1) span").addClass("text-active");
     $(".dates-info").slideDown('fast')
     $.ajax({
-      // url: 'http://localhost:3000',
-      url: "https://template-hq.herokuapp.com/",
+      url: 'http://localhost:3000',
+      // url: "https://template-hq.herokuapp.com/",
       method: "GET",
       dataType: "json",
       data: {arrival: arrival, departure: departure}
     }).success(function(response){
-      console.log(response);
       $("#arrival-info").empty()
       $("#departure-info").empty()
       $("#arrival-info").append(response.arrive)
@@ -181,8 +180,7 @@ $(document).ready(function() {
   $(".rentButton").click(function(){
     $("#myNav").animate({scrollTop:$('form h5').first().position()['top']},"slow")
     $(".form-overlay").slideUp('fast')
-    var bedsAndPrices = [];
-    var card = "";
+    // var card = "";
     var one_day=1000*60*60*24;
     var arrivalDate = new Date($("#arrival-info").text())
     var departureDate = new Date($("#departure-info").text())
@@ -195,18 +193,19 @@ $(document).ready(function() {
       numberOfBeds = parseInt(numberOfBeds);
       if (!(isNaN(numberOfBeds))) {
         if (numberOfBeds >= 1) {
+          var bedsAndPrices = [];
           var totalPrice = (price * numberOfBeds).toFixed(2)
           var image = $(".card-image img")[index]
           var imageSrc = image.attributes['src'].value
           bedsAndPrices.push([price, numberOfBeds, name, totalPrice, imageSrc, numberOfNights, $("#arrival-info").text(), $("#departure-info").text(), numberOfNights]);
-          card += "<div class='card' style='min-height: 320px;'>\
+          var card = "<div class='card' style='min-height: 310px;'>\
                     <div class='card-image waves-effect waves-block waves-light'>\
                       <img src='" + bedsAndPrices[0][4] + "'></a>\
                     </div>\
                     <div class='card-content' style='height: 120px; position: relative;'>\
-                      <span class='activator grey-text text-darken-4 room-name' style='font-size: 16px; font-weight: 400; position: absolute; top: 15px; left: 15px;'>" + bedsAndPrices[0][2] + "</span>\
+                      <span class='activator grey-text text-darken-4 room-name' style='font-size: 16px; font-weight: 400; position: absolute; top: 15px; left: 15px;'>" + text_truncate(bedsAndPrices[0][2]) + "</span>\
                       <span style='position: absolute; top: 7px; right: 7px'><span id='number-of-nights'>"+ bedsAndPrices[0][5] + "</span> noites</span>\
-                      <span style='position: absolute; bottom: 14px; left: 12px;'>Valor total R$ <span class='total-value-card'>" + bedsAndPrices[0][3] + "</span></span>\
+                      <span style='position: absolute; bottom: 14px; left: 12px;'>Subtotal R$ <span class='total-value-card'>" + bedsAndPrices[0][3] + "</span></span>\
                       <a style='cursor: pointer; cursor: pointer; position: absolute; top: 0; bottom: 0; right: 0; left: 0;' class='activator'></a>\
                       <a class='btn-floating btn waves-effect waves-light amber activator' style='cursor: pointer; position: absolute; bottom: 10px; right: 10px'><i class='material-icons'>add</i></a>\
                     </div>\
@@ -222,22 +221,22 @@ $(document).ready(function() {
                           <div><span style='font-weight: 900;' class='departure-date-card'>" + bedsAndPrices[0][7] + "</span></div>\
                         </div>\
                         <div class='col s12' style='display: flex; justify-content: space-around; margin: 5px auto;'>\
-                          <span id='number-of-units'>" + bedsAndPrices[0][1] + " cama(s)</span><span id='number-of-nights'>" + bedsAndPrices[0][5] +  " noites</span>\
+                          <span class='number-of-units'>" + bedsAndPrices[0][1] + " cama(s)</span><span id='number-of-nights'>" + bedsAndPrices[0][5] +  " noites</span>\
                         </div>\
                         <div class='col s12' style='display: flex; flex-direction: column; align-items: center; margin: 10px auto;'>\
-                          <span style='margin: 3px auto;'>Subtotal: R$ <span id='subtotal'>" + bedsAndPrices[0][3] + "</span></span>\
-                          <span id='increaseBreakfast' style='display: none; font-size: 12px;'>(+) Café da manhã: BRL: R$ <span id='breakfast-card-value'></></span>\
+                          <span style='margin: 3px auto;'>Subtotal: R$ <span class='subtotal'>" + bedsAndPrices[0][3] + "</span></span>\
                         </div>\
-                        <span style='position: absolute; bottom: 12px; right: 12px; font-weight: 600; font-size: 14px;'>Valor total: R$ <span class='total-value-card'>" + bedsAndPrices[0][3] + "</span></span>\
+                        <div class='col s12' style='display: flex; flex-direction: column;justify-content: flex-start; margin: 10px auto;'>\
+                          <span class='remove-room'><i class='material-icons' style='margin-left: 10px; cursor: pointer;'>delete</i></span><span class='remove-room' style='font-size: 11px; cursor: pointer;'>Remover</span>\
+                        </div>\
                       </div>\
                     </div>\
-                  </div>"
+                  </div>";
+          $(".card-info-booking").append(card)
         }
-        console.log(bedsAndPrices)
       }
     });
     $(".booking_cards").empty();
-    $(".card-info-booking").append(card)
     $(".dates-info").css('display', 'none')
     $(".form-to-booking").slideDown("fast");
     $(".info-content i.item-active").removeClass("item-active")
@@ -314,8 +313,8 @@ $(document).ready(function() {
     var breakfastValue = $("#breakfast-card-value").text();
     var room = $(".room-name").text()
     $.ajax({
-      // url: 'http://localhost:3000/confirm',
-      url: "https://template-hq.herokuapp.com/confirm",
+      url: 'http://localhost:3000/confirm',
+      // url: "https://template-hq.herokuapp.com/confirm",
       method: "POST",
       dataType: "json",
       data: {
@@ -336,7 +335,6 @@ $(document).ready(function() {
         room: room
       }
     }).success(function(response){
-      console.log(response);
       if (response.status) {
         $("#myNav").animate({scrollTop:$('.form-to-booking').first().position()['top']},"slow")
         $(".info-content i.item-active").removeClass("item-active")
@@ -402,8 +400,9 @@ $(document).ready(function() {
     e.preventDefault();
     $("ul li.error-message").slideUp("fast");
   });
-  $(".rent-button").click(function(){
-    $("#myNav").css('width', "100%")
+  $("body").on('click', ".rent-button", function(){
+    $("#myNav").css('width', "100%");
+    $(".error-message-arrival-date").slideUp("fast");
   });
   $(".home-content").click(function(){
     $(".form-to-booking").slideUp("fast");
@@ -414,6 +413,33 @@ $(document).ready(function() {
     $(".info-content:nth-child(1) i").addClass("item-active");
     $(".info-content:nth-child(1) span").addClass("text-active");
   });
+  $("body").on('click', ".remove-room", function(){
+    var card = $(this).closest("div.card");
+    $(card).remove();
+    if (!($(".card").length >= 1)) {
+      $(".form-to-booking").slideUp("fast");
+      $(".form-overlay").slideDown('fast');
+      $(".card-info-booking").empty();
+      $(".info-content i.item-active").removeClass("item-active");
+      $(".info-content span.text-active").removeClass("text-active");
+      $(".info-content:nth-child(1) i").addClass("item-active");
+      $(".info-content:nth-child(1) span").addClass("text-active");
+      }
+  });
+  (function(t,a,l,k,u,s,e){
+    if(!t[u]){
+      t[u]=function(){
+        (t[u].q=t[u].q||[]).push(arguments)
+      },
+      t[u].l=1*new Date();
+      s=a.createElement(l),
+      e=a.getElementsByTagName(l)[0];
+      s.async=1;
+      s.src=k;
+      e.parentNode.insertBefore(s,e)}
+    })
+  (window,document,'script','//www.talkus.io/plugin.beta.js','talkus');
+  talkus('init', '4LHeHnEZnZaZ2Rw38');
 });
 function ableButton(){
   $(".rentButton").attr('disabled', 'disabled');
@@ -456,42 +482,59 @@ function checkEmailConfirmation(){
   }, 200);
 }
 function increaseBreakfastValue(){
-  var subtotal = parseFloat($("#subtotal").text().replace("R$", "")).toFixed(2)
   var numberOfNights = parseInt($("#number-of-nights").text())
-  var numberOfUnits = parseInt($("#number-of-units").text())
-  var breakfastValue = (12 * numberOfNights * numberOfUnits)
-  var totalBookingValue = (parseFloat(breakfastValue) + parseFloat(subtotal)).toFixed(2)
+  var subtotal = 0;
+  var totalNumberOfUnits = 0;
+  var breakFastUnit = 12;
+  $(".subtotal").each(function(index){
+    subtotal += parseFloat($(this).text());
+  });
+  $(".number-of-units").each(function(index){
+    totalNumberOfUnits += parseInt($(this).text());
+  });
+  subtotal = subtotal.toFixed(2);
+  var breakfastTotalValue = (parseInt(breakFastUnit * totalNumberOfUnits * numberOfNights));
+  var totalBookingValue = (parseFloat(breakfastTotalValue) + parseFloat(subtotal)).toFixed(2);
+  var card = "<div class='row breakfast-info' style='display: none;'>\
+                <div class='z-depth-4' style='margin: 0 auto; max-width: 270px;'>\
+                  <div class='breakfast-items' style='display: flex; justify-content: space-around'>\
+                    <span class='left-align' style='margin-top: 10px'>Hospedagem:</span><span style='margin-top: 10px'>R$ " + subtotal + "</span>\
+                  </div>\
+                  <div class='breakfast-items' style='display: flex; justify-content: space-around'>\
+                    <span class='left-align' style='margin-top: 10px'>(+) Café da manhã:</span><span style='margin-top: 10px'>R$ " + breakfastTotalValue + "</span>\
+                  </div>\
+                  <div class='breakfast-items' style='display: flex; justify-content: space-around'>\
+                    <span class='left-align' style='font-weight: 900; margin-top: 10px; margin-bottom: 10px;'>Total:</span><span style='margin-top: 10px; margin-bottom: 10px;'>R$ " + totalBookingValue + "</span>\
+                  </div>\
+                </div>\
+              </div>";
+  $(".card-info-booking").append(card);
   if ($("#breakfast").prop('checked')) {
-    $(".subtotalValue").empty()
-    $(".breakfast-total-price").empty()
-    $(".total-booking-value").empty()
-    $(".total-value-card").empty()
-    $("#breakfast-card-value").empty()
-    $("#breakfastIncrease").slideDown('fast')
-    $(".subtotalValue").append(subtotal)
-    $(".breakfast-total-price").append(breakfastValue)
-    $(".total-booking-value").append(totalBookingValue)
-    $(".total-value-card").append(totalBookingValue)
-    $("#increaseBreakfast").slideDown('fast')
-    $("#breakfast-card-value").append(breakfastValue)
+    $(".breakfast-total-price").empty();
+    $(".breakfast-total-price").append(breakfastTotalValue);
+    $(".subtotalValue").empty();
+    $(".subtotalValue").append(subtotal);
+    $(".total-booking-value").empty();
+    $(".total-booking-value").append(totalBookingValue);
+    $(".breakfast-info").slideDown('fast');
+    $("#breakfastIncrease").slideDown('fast');
   } else {
     $("#breakfastIncrease").slideUp('fast')
-    $("#increaseBreakfast").slideUp('fast')
-    $(".total-value-card").empty()
-    $(".total-value-card").append(subtotal)
+    $(".breakfast-info").slideUp('fast');
+    $(".breakfast-info").remove();
   }
 }
 function navbarFixedFunction() {
-  var searchBarHeight = parseInt($("#fixedBookingRow").css("height").replace("px", ""))
-  var searchBarPosition = $("#fixedBookingRow").position()['top']
-  var bodyScrollTop = $("body").scrollTop()
+  var searchBarHeight = parseInt($("#fixedBookingRow").css("height").replace("px", ""));
+  var searchBarPosition = $("#fixedBookingRow").position()['top'];
+  var bodyScrollTop = $("body").scrollTop();
 
   if (bodyScrollTop > searchBarHeight + searchBarPosition) {
     if ($(window).width() < 600) {
       $(".mobileAndWidthSmallHide").hide();
-      $("#booking").attr('onclick', 'backToTop()')
+      $("#booking").attr('onclick', 'backToTop()');
     } else {
-      $("#booking").removeAttr('onclick')
+      $("#booking").removeAttr('onclick');
     }
     $("#fixedBookingRow").css("position", "fixed")
     $("#fixedBookingRow").css("top", "0")
@@ -501,6 +544,7 @@ function navbarFixedFunction() {
     $("#fixedBookingRow").css("z-index", "100")
     $("#fixedBookingRow").css("backgroundColor", "rgba(0,0,0,0.9)")
     $(".bookRowInside").css("marginBottom", '0px')
+    $(".bookRowInside").css("marginTop", '10px')
     $(".bookRow").css("marginBottom", '0px')
     $(".input-field .material-icons.prefix").css('color', 'white')
   }
@@ -531,4 +575,51 @@ function closeNav() {
 }
 function backToTop() {
   $("body").animate({scrollTop:0},"slow")
+}
+text_truncate = function(str, length, ending) {
+  if (length == null) {
+    length = 22;
+  }
+  if (ending == null) {
+    ending = '...';
+  }
+  if (str.length > length) {
+    return str.substring(0, length - ending.length) + ending;
+  } else {
+    return str;
+  }
+};
+function navbarTopFunction(){
+  var bodyScrollTop = $("body").scrollTop();
+  var navBarHeight = parseInt($(".mdl-layout__drawer-button").css('height').replace("px", ""));
+  if (bodyScrollTop > navBarHeight) {
+    $(".fixed-navbar").slideDown('fast');
+    if ($(window).width() < 600) {
+      $(".mobileAndWidthSmallHide").hide();
+      $("#booking").addClass('rent-button');
+    } else {
+      $("#booking").removeClass('rent-button');
+    }
+    $("#fixedBookingRow").css("position", "fixed")
+    $("#fixedBookingRow").css("top", "0")
+    $("#fixedBookingRow").css("right", "0")
+    $("#fixedBookingRow").css("left", "0")
+    $("#fixedBookingRow").css("margin", "auto")
+    $("#fixedBookingRow").css("z-index", "100")
+    $("#fixedBookingRow").css("backgroundColor", "rgba(0,0,0,0.9)")
+    $(".bookRowInside").css("marginBottom", '0px')
+    $(".bookRowInside").css("marginTop", '10px')
+    $(".bookRow").css("marginBottom", '0px')
+    $(".input-field .material-icons.prefix").css('color', 'white')
+  }
+  else {
+    var display = $(".mobileAndWidthSmallHide").css('display');
+    if ($(window).width() < 425) {
+      $(".mobileAndWidthSmallHide").show();
+    }
+    else if ($(window).width() > 425 && display == "none") {
+      $(".mobileAndWidthSmallHide").show();
+    }
+    $(".fixed-navbar").slideUp('fast');
+  }
 }
