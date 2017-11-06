@@ -1,0 +1,135 @@
+<div class="row form-to-booking" style="display: none;">
+  <form class="col s12 overlay-form">
+    <h5>Identifiação</h5>
+    <div class="row">
+      <div class="input-field col s12 m6">
+        <input id="first_name" type="text" class="validate" pattern="[a-zA-Z\s]+" minlength="2">
+        <label for="first_name" data-error="Nome inválido">Nome</label>
+      </div>
+      <div class="input-field col s12 m6">
+        <input id="last_name" type="text" class="validate" pattern="[a-zA-Z\s]+">
+        <label for="last_name" data-error="Sobrenome inválido">Sobrenome</label>
+      </div>
+      <div class="input-field col s12 m6">
+        <input id="guest_email" type="email" class="validate">
+        <label for="guest_email" data-error="E-mail inválido">E-mail</label>
+      </div>
+      <div class="input-field col s12 m6">
+        <input id="confirm_email" type="text" class="validate" onchange="checkEmailConfirmation()">
+        <label for="confirm_email" data-error="Os emails devem ser iguais">Confirmação de E-mail</label>
+      </div>
+      <div class="input-field col s12 m6">
+        <input id="phone" type="tel" class="validate" pattern="[0-9\s]+">
+        <label for="phone" data-error="Insira apenas números">Telefone</label>
+      </div>
+      <div class="input-field col s12 m6" id="country">
+        <select>
+          <option value="" disabled selected>País</option>
+          <% COUNTRIES.each do |country| %>
+          <option value="<%= country %>"><%= country %></option>
+          <% end %>
+        </select>
+        <label>País</label>
+      </div>
+      <div class="input-field col s12">
+        <textarea id="notes" class="materialize-textarea"></textarea>
+        <label for="notes">Notas:</label>
+      </div>
+    </div>
+    <h5>Café da manhã</h5>
+    <div class="row">
+      <div class="col s12" style="padding: 0 15px; margin: 10px 0;">
+        <input type="checkbox" id="breakfast" onclick="increaseBreakfastValue()"/>
+        <label for="breakfast">Adicionar café da manhã por mais BRL 12.00 por hóspede por noite.</label>
+        <div class="row" id="breakfastIncrease" style="display: none;">
+          <p>Hospedagem: R$ <span class="subtotalValue"></span></p>
+          <p>(+) Café da manhã: BRL: <span class="breakfast-total-price"></span></p>
+          <p>Total: R$ <span class="total-booking-value"></span></p>
+        </div>
+      </div>
+    </div>
+    <h5>Cupom de Desconto</h5>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="discount_code" type="text">
+        <label for="discount_code">Código</label>
+      </div>
+    </div>
+    <h5>Pagamento</h5>
+    <div class="row">
+      <div class="col s12" style="padding: 0 15px; margin: 10px 0;">
+        <input type="checkbox" id="credit_card_accepted" checked="checked" disabled="disabled" />
+        <label for="credit-card-accepted">Cartão de Crédito</label>
+      </div>
+    </div>
+    <div class="input-field col s12 m6">
+      <input id="credit-card-name" type="text" class="validate" pattern="[a-zA-Z\s]+">
+      <label for="credit-card-name" data-error="Nome inválido">Nome</label>
+    </div>
+    <div class="input-field col s12 m6">
+      <input id="credit-card-number" type="text" pattern="[0-9\s]+" minlength="16" class="validate" onchange="creditCardValidation()">
+      <label for="credit-card-number" data-error="Cartão inválido">Nº Cartão de Crédito</label>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <label>Validade:</label>
+      </div>
+    </div>
+    <div class="input-field col s6 m6" id="month-expiration">
+      <select>
+        <option value="1">01</option>
+        <option value="2">02</option>
+        <option value="3">03</option>
+        <option value="4">04</option>
+        <option value="5">05</option>
+        <option value="6">06</option>
+        <option value="7">07</option>
+        <option value="8">08</option>
+        <option value="9">09</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+      </select>
+      <label>Mês</label>
+    </div>
+    <div class="input-field col s6 m6" id="year-expiration">
+      <select>
+        <option value="2017">2017</option>
+        <option value="2018">2018</option>
+        <option value="2019">2019</option>
+        <option value="2020">2020</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025">2025</option>
+        <option value="2026">2026</option>
+        <option value="2027">2027</option>
+        <option value="2028">2028</option>
+        <option value="2029">2029</option>
+        <option value="2030">2030</option>
+        <option value="2031">2031</option>
+        <option value="2032">2032</option>
+        <option value="2033">2033</option>
+        <option value="2034">2034</option>
+        <option value="2035">2035</option>
+        <option value="2036">2036</option>
+        <option value="2037">2037</option>
+      </select>
+      <label>Ano</label>
+    </div>
+    <div class="input-field col s12">
+      <input id="security-code" type="text" class="validate" pattern="[0-9]+" minlength="3">
+      <label for="security-code" data-error="Código de Segurança inválido">Código de Segurança</label>
+    </div>
+    <div class="col s12">
+      <input type="checkbox" id="terms-and-conditions" checked="checked" onchange="checkTermsAndConditions()" />
+      <label for="terms-and-conditions">Eu li e aceito todos os termos e condições de hospedagem.</label>
+    </div>
+    <div class="container center-align">
+      <a style="cursor: pointer; margin: 30px auto;" class="btn btn-large waves-effect waves-light amber" id="confirm-booking" disabled>confirmar reserva</a>
+    </div>
+    <%= render 'partials/guest_info_errors' %>
+    <p class="right-align" style="font-size: 0.8em;">Se você não receber um e-mail dentro de 24 hrs, por favor cheque na sua  lixeira eletrônica.</p>
+  </form>
+</div>

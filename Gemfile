@@ -32,7 +32,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'jquery-rails'
-
+gem 'jquery-ui-rails'
 
 # Scrapping
 gem 'nokogiri', '~> 1.6', '>= 1.6.8'
@@ -40,6 +40,28 @@ gem 'responders'
 
 # Font Awesome
 gem 'font-awesome-sass'
+
+# Devise and active admin
+gem 'devise'
+gem 'activeadmin', github: 'activeadmin/activeadmin'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'rails_admin', '>= 1.0.0.rc'
+
+# Figaro
+gem 'figaro'
+
+# Image uploud service
+gem 'cloudinary'
+# Image upload models
+gem 'carrierwave', '~> 0.11.2'
+gem 'mini_magick'
+
+# Simple form
+gem 'simple_form'
+
+# Swipe box
+gem 'swipebox'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -1,0 +1,23 @@
+<%= render 'partials/fixed_navbar' %>
+<section style="min-height: 60vh;margin-top: 5vh; margin-bottom: 5vh;">
+  <div class="container" style="width: 90% !important">
+    <div class="row">
+      <div class="col s12 m5 center-align" style="margin-bottom: 5vh;">
+        <blockquote>
+        O nosso programa de voluntariado permite a viajantes se hospedarem por 1-2 meses, trocando habilidades por moradia.
+        </blockquote>
+        <h5 class="black-text">
+          Clique no logo da Worldpackers para conferir as nossas vagas!
+        </h5>
+        <%= link_to 'https://www.worldpackers.com/locations/cafe-hostel-sao-paulo' do %>
+          <%= image_tag 'worldpackers.png', class: 'responsive-img' %>
+        <% end %>
+      </div>
+      <div class="col s12 m7">
+        <div class="valign-wrapper">
+          <%= video_tag "worldpackers.mp4", controls: :controls, class: 'responsive-video' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,37 +1,20 @@
-<%= render 'partials/translate_plugin' %>
-<%= render 'partials/navbar' %>
 <%= render 'partials/banner' %>
 <%= render 'partials/social_media' %>
 <section>
-  <div class="container-fluid" style="min-height: 120vh; background-color: white; margin-bottom: 9%;">
+  <div class="container-fluid" style="min-height: 120vh; background-color: white;">
     <%= render 'partials/welcome_text' %>
     <%= render 'partials/welcome_items' %>
     <%= render 'partials/welcome_images' %>
   </div>
 </section>
-
 <section>
-  <div class="container-fluid" style="min-height: 90vh; background-color: white; margin-bottom: 9%;">
+  <div class="container-fluid" style="min-height: 90vh; background-color: white;">
     <div class="container" style="width: 90% !important">
       <%= render 'partials/rooms' %>
-
-      <div class="row">
-
-      </div>
+      <%= render 'partials/sustentability' %>
+      <%= render 'partials/brazil_sp' %>
     </div>
   </div>
 </section>
-
-<div class="fixed-action-btn">
-  <a class="btn-floating btn-large waves-effect waves-light amber">
-    <i class="medium material-icons">chat</i>
-  </a>
-  <ul>
-    <li><a class="btn-floating red"><i class="material-icons">message</i></a></li>
-  </ul>
-</div>
-
-<%= render 'partials/footer' %>
-
-<%= video_tag "home.mp4", muted: :muted, autoplay: :autoplay, loop: :loop, class: "video", poster: "bgvideo.png" %>
-<%= javascript_include_tag ('test.js') %>
+<video src="<%= video_path ('home.mp4') %>" id="home_video" class="video" muted loop poster="<%= image_path ('bgvideo.png') %>">
+</video>

@@ -1,7 +1,24 @@
-<div class="mdl-layout__drawer-button valign-wrapper" aria-expand="false" role="button" tabindex="0" style="margin-top: 15px;">
-    <a href="#" data-activates="slide-out" class="button-collapse waves-effect waves-light menu"><i class="small material-icons">menu</i></a>
-
-    <%= link_to root_path do %>
-      <%= image_tag ('logo.png'), class: 'logo' %>
+<div style="display: flex; justify-content: flex-end; margin: 0px !important; float: right !important;">
+  <div class="row">
+    <% if params['action'] == 'index' %>
+    <a class="btn-floating btn-small waves-effect waves-light hide-on-small-only" target="_blank" href="https://www.facebook.com/cafehostelsp">
+      <i class="fa fa-facebook" aria-hidden="true"></i>
+    </a>
+    <a class="btn-floating btn-small waves-effect waves-light hide-on-small-only" target="_blank" href="https://www.instagram.com/cafehostelsp">
+      <i class="fa fa-instagram" aria-hidden="true"></i>
+    </a>
+    <a class="btn-floating btn-small waves-effect waves-light hide-on-small-only" target="_blank" href="https://www.youtube.com/user/cafehostelsp">
+      <i class="fa fa-youtube" aria-hidden="true"></i>
+    </a>
     <% end %>
+    <%= render 'partials/translate_plugin' %>
+  </div>
 </div>
+<div class="mdl-layout__drawer-button valign-wrapper" aria-expand="false" role="button" tabindex="0" style="margin-top: 15px;">
+  <a data-activates="slide-out" class="button-collapse waves-effect waves-light menu"><i class="small material-icons">menu</i></a>
+
+  <%= link_to root_path do %>
+    <%= image_tag ('logo.png'), class: 'logo' %>
+  <% end %>
+</div>
+

@@ -1,6 +1,8 @@
+.hide-on-small-only {
+  margin: auto 3px;
+}
 .fa {
-  font-size: 35px !important;
-
+  font-size: 20px !important;
 }
 .fa-instagram {
   background:
@@ -23,8 +25,8 @@
   /////// corner gradients
   linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
 }
-.fa-snapchat {
-  background-color: rgb(255, 251, 1);
+.fa-youtube {
+  background-color: rgb(255, 0, 0);
 }
 .fa-whatsapp {
   background-color: rgb(37, 211, 102);

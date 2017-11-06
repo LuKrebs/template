@@ -1,0 +1,23 @@
+.booking_cards {
+
+  .booking-info {
+    font-size: 13px;
+    font-weight: 900;
+  }
+  .input-field input[type=text] {
+    color: black;
+    font-size: 1rem;
+  }
+  .card-title {
+    right: 0;
+  }
+  .booking-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .dropdown-content li > a, .dropdown-content li > span {
+    color: black;
+  }
+}

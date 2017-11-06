@@ -1,0 +1,30 @@
+<div id="myNav" class="overlay" style="background-image: url('<%= image_path ('about.jpg') %>');">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div class="overlay-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col s12 m12">
+          <%= render 'partials/header_overlay.html.erb' %>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid" style="background-color: white;">
+      <div class="row" style="margin-top: 30px;">
+        <%= render 'partials/form_overlay' %>
+      </div>
+      <div class="row booking_cards">
+      </div>
+      <div class="row form-guest">
+        <div class="col s12 m4 card-info-booking">
+        </div>
+        <div class="col s12 m8">
+          <%= render 'partials/guest_form' %>
+        </div>
+      </div>
+      <a style="display: none; cursor: pointer; position: fixed; bottom: 100px; right: 20px;" class="btn btn-large waves-effect waves-light amber modal-trigger rentButton" disabled >reservar</a>
+      <div class="row" style="background-color: white;">
+        <%= render 'partials/terms_and_conditions' %>
+      </div>
+    </div>
+  </div>
+</div>

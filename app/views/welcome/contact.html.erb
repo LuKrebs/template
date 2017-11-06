@@ -1,0 +1,14 @@
+<%= render 'partials/fixed_navbar' %>
+<section style="min-height: 100vh;">
+  <div class="container" style="width: 90% !important">
+    <%= render 'partials/best_location' %>
+    <%= render 'partials/how_to_arrive' %>
+  </div>
+  <div class="container-fluid">
+    <%= render 'partials/google_maps_iframe' %>
+  </div>
+  <div class="container" style="width: 90% !important">
+    <%= render 'partials/contact_us' %>
+  </div>
+</section>
+<%= javascript_include_tag ('contact.js') %>
