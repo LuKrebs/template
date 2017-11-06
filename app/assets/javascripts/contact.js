@@ -25,8 +25,8 @@ $(document).ready(function(){
       $(".errors-text .message-error").slideUp('fast')
     }
     $.ajax({
-      url: 'http://localhost:3000/contact',
-      // url: "https://template-hq.herokuapp.com/"contact,
+      // url: 'http://localhost:3000/contact',
+      url: "https://template-hq.herokuapp.com/contact",
       method: 'POST',
       dataType: "json",
       data: {

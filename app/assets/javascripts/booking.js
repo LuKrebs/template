@@ -28,8 +28,8 @@ $(document).ready(function() {
     var arrival = $("#arrival").val();
     var departure = $("#departure").val();
     $.ajax({
-      url: 'http://localhost:3000',
-      // url: "https://template-hq.herokuapp.com/",
+      // url: 'http://localhost:3000',
+      url: "https://template-hq.herokuapp.com/",
       method: "GET",
       dataType: "json",
       data: {arrival: arrival, departure: departure}
@@ -116,8 +116,8 @@ $(document).ready(function() {
     $(".info-content:nth-child(1) span").addClass("text-active");
     $(".dates-info").slideDown('fast')
     $.ajax({
-      url: 'http://localhost:3000',
-      // url: "https://template-hq.herokuapp.com/",
+      // url: 'http://localhost:3000',
+      url: "https://template-hq.herokuapp.com/",
       method: "GET",
       dataType: "json",
       data: {arrival: arrival, departure: departure}
@@ -313,8 +313,8 @@ $(document).ready(function() {
     var breakfastValue = $("#breakfast-card-value").text();
     var room = $(".room-name").text()
     $.ajax({
-      url: 'http://localhost:3000/confirm',
-      // url: "https://template-hq.herokuapp.com/confirm",
+      // url: 'http://localhost:3000/confirm',
+      url: "https://template-hq.herokuapp.com/confirm",
       method: "POST",
       dataType: "json",
       data: {
