@@ -1,12 +1,10 @@
 $(document).ready(function() {
   $("#booking").click(function() {
-    $(".booking_cards").empty();
-    $(".card-info-booking").empty()
+    // WITHOUT OVERLAY
     var arrival = $("#arrival").val();
     var departure = $("#departure").val();
-    $("#arrival-info").empty()
-    $("#departure-info").empty()
     $("li.error-message i").css('color', 'white');
+
     if (arrival == "") {
       return $(".error-message-arrival-date").slideDown("fast");
     }
@@ -21,71 +19,112 @@ $(document).ready(function() {
     if (arrival < new Date()) {
      return $(".error-message-less-date").slideDown("fast")
     }
-    $("#myNav").css('width', "100%")
-    $(".info-content i").first().addClass("item-active")
-    $(".info-content span").first().addClass("text-active")
-    $(".dates-info").slideDown('fast')
-    var arrival = $("#arrival").val();
-    var departure = $("#departure").val();
     $.ajax({
       // url: 'http://localhost:3000',
       url: "https://template-hq.herokuapp.com/",
       method: "GET",
       dataType: "json",
       data: {arrival: arrival, departure: departure}
-    }).success(function(response){
-        $("#arrival-info").empty()
-        $("#departure-info").empty()
-        $("#arrival-info").append(response.arrive)
-        $("#departure-info").append(response.departure)
-        for (var i = 0; i < 5; i++) {
-        var imagesArray = response.images[i];
-        for (var j = 0; j < imagesArray.length; j++) {
-          if (j > 0) {
-            $("body").append("<a href='" + imagesArray[j] + "' class='swipebox' style='display: none;' rel='bed-" + i + "'><img src='" + imagesArray[j] + "' alt='image'></a>");
-          };
-        }
-        var units = response.units[i].length;
-        var array = response.names[i]
-        var val = array[array.length - 1];
-        var card = "<div class='col s12 m6 l4'>\
-                      <div class='card' style='min-height: 320px; min-width: 240px;'>\
-                        <div class='card-image' >\
-                          <a href='" + response.images[i][0] + "' class='swipebox' rel='bed-" + i + "'><img src='" + response.images[i][0] + "' alt='image'></a>\
-                          <a href='" + response.images[i][0] + "' class='swipebox' rel='bed-" + i + "'>\
-                            <span style='position: absolute; top: 0; right:0; margin: 8px;'>\
-                              <i class='material-icons white-text'>zoom_in</i>\
-                            </span>\
-                          </a>\
-                          <span class='card-title white-text right-align' style='z-index: 1;'>" + val + " <i class='fa fa-user' aria-hidden='true' style='margin-left: 5px;'></i></span>\
-                        </div>\
-                        <div class='card-content' style='height: 25vh; max-height: 130px;'>\
-                          <div class='booking-info'>\
-                            <span class='black-text first-booking-text' style='float: left;'>" + response.names[i][0] + "</span>\
-                            <span class='red-text second-booking-text' style='float: right; text-decoration: line-through;'>" + response.prices[i][1] + "</span>\
-                          </div>\
-                          <div class='booking-info'>\
-                            <span class='red-text third-booking-text'>DISCOUNT 5%</span>\
-                            <span class='black-text fourth-booking-text'>" + response.prices[i][2] + "</span>\
-                          </div>\
-                          <div class='input-field col s7 m6 l6 units-number' style='padding: 0px; float: left; margin-top: 0px;' onchange='ableButton();'>\
-                            <select>\
-                              <option value='0' selected>Camas</option>";
-                              for (var j = 0; j < units; j++) {
-                                card += "<option value='" + j + "'>" + j + "</option>";
-                              }
-                            card += "</select>\
-                          </div>\
-                        </div>\
-                      </div>\
-                    </div>";
-        $(".booking_cards").append(card);
-        $('select').material_select();
-      }
-    }).error(function(response){
+    }).
+    done(function(response){
+      // console.log("response")
+    }).
+    success(function(response){
+      window.open(response.url, "_self");
+    }).
+    error(function(response){
       // console.log(response);
     });
   });
+
+  //   $("#booking").click(function() {
+  //   // OVERLAY STUFF
+  //   $(".booking_cards").empty();
+  //   $(".card-info-booking").empty()
+  //   var arrival = $("#arrival").val();
+  //   var departure = $("#departure").val();
+  //   $("#arrival-info").empty()
+  //   $("#departure-info").empty()
+  //   $("li.error-message i").css('color', 'white');
+  //   if (arrival == "") {
+  //     return $(".error-message-arrival-date").slideDown("fast");
+  //   }
+  //   if (departure == "") {
+  //     return $(".error-message-departure-date").slideDown("fast");
+  //   }
+  //   arrival = new Date(arrival);
+  //   departure = new Date(departure);
+  //   if (arrival >= departure) {
+  //     return $(".error-message-equal-date").slideDown("fast")
+  //   }
+  //   if (arrival < new Date()) {
+  //    return $(".error-message-less-date").slideDown("fast")
+  //   }
+  //   $("#myNav").css('width', "100%")
+  //   $(".info-content i").first().addClass("item-active")
+  //   $(".info-content span").first().addClass("text-active")
+  //   $(".dates-info").slideDown('fast')
+  //   var arrival = $("#arrival").val();
+  //   var departure = $("#departure").val();
+  //   $.ajax({
+  //     url: 'http://localhost:3000',
+  //     // url: "https://template-hq.herokuapp.com/",
+  //     method: "GET",
+  //     dataType: "json",
+  //     data: {arrival: arrival, departure: departure}
+  //   }).success(function(response){
+  //       $("#arrival-info").empty()
+  //       $("#departure-info").empty()
+  //       $("#arrival-info").append(response.arrive)
+  //       $("#departure-info").append(response.departure)
+  //       for (var i = 0; i < 5; i++) {
+  //       var imagesArray = response.images[i];
+  //       for (var j = 0; j < imagesArray.length; j++) {
+  //         if (j > 0) {
+  //           $("body").append("<a href='" + imagesArray[j] + "' class='swipebox' style='display: none;' rel='bed-" + i + "'><img src='" + imagesArray[j] + "' alt='image'></a>");
+  //         };
+  //       }
+  //       var units = response.units[i].length;
+  //       var array = response.names[i]
+  //       var val = array[array.length - 1];
+  //       var card = "<div class='col s12 m6 l4'>\
+  //                     <div class='card' style='min-height: 320px; min-width: 240px;'>\
+  //                       <div class='card-image' >\
+  //                         <a href='" + response.images[i][0] + "' class='swipebox' rel='bed-" + i + "'><img src='" + response.images[i][0] + "' alt='image'></a>\
+  //                         <a href='" + response.images[i][0] + "' class='swipebox' rel='bed-" + i + "'>\
+  //                           <span style='position: absolute; top: 0; right:0; margin: 8px;'>\
+  //                             <i class='material-icons white-text'>zoom_in</i>\
+  //                           </span>\
+  //                         </a>\
+  //                         <span class='card-title white-text right-align' style='z-index: 1;'>" + val + " <i class='fa fa-user' aria-hidden='true' style='margin-left: 5px;'></i></span>\
+  //                       </div>\
+  //                       <div class='card-content' style='height: 25vh; max-height: 130px;'>\
+  //                         <div class='booking-info'>\
+  //                           <span class='black-text first-booking-text' style='float: left;'>" + response.names[i][0] + "</span>\
+  //                           <span class='red-text second-booking-text' style='float: right; text-decoration: line-through;'>" + response.prices[i][1] + "</span>\
+  //                         </div>\
+  //                         <div class='booking-info'>\
+  //                           <span class='red-text third-booking-text'>DISCOUNT 5%</span>\
+  //                           <span class='black-text fourth-booking-text'>" + response.prices[i][2] + "</span>\
+  //                         </div>\
+  //                         <div class='input-field col s7 m6 l6 units-number' style='padding: 0px; float: left; margin-top: 0px;' onchange='ableButton();'>\
+  //                           <select>\
+  //                             <option value='0' selected>Camas</option>";
+  //                             for (var j = 0; j < units; j++) {
+  //                               card += "<option value='" + j + "'>" + j + "</option>";
+  //                             }
+  //                           card += "</select>\
+  //                         </div>\
+  //                       </div>\
+  //                     </div>\
+  //                   </div>";
+  //       $(".booking_cards").append(card);
+  //       $('select').material_select();
+  //     }
+  //   }).error(function(response){
+  //     // console.log(response);
+  //   });
+  // });
   $("#booking_overlay_page").click(function() {
     var arrival = $("#arrival_overlay_page").val();
     var departure = $("#departure_overlay_page").val();
@@ -400,10 +439,10 @@ $(document).ready(function() {
     e.preventDefault();
     $("ul li.error-message").slideUp("fast");
   });
-  $("body").on('click', ".rent-button", function(){
-    $("#myNav").css('width', "100%");
-    $(".error-message-arrival-date").slideUp("fast");
-  });
+  // $("body").on('click', ".rent-button", function(){
+  //   $("#myNav").css('width', "100%");
+  //   $(".error-message-arrival-date").slideUp("fast");
+  // });
   $(".home-content").click(function(){
     $(".form-to-booking").slideUp("fast");
     $(".form-overlay").slideDown('fast');
@@ -426,20 +465,6 @@ $(document).ready(function() {
       $(".info-content:nth-child(1) span").addClass("text-active");
       }
   });
-  (function(t,a,l,k,u,s,e){
-    if(!t[u]){
-      t[u]=function(){
-        (t[u].q=t[u].q||[]).push(arguments)
-      },
-      t[u].l=1*new Date();
-      s=a.createElement(l),
-      e=a.getElementsByTagName(l)[0];
-      s.async=1;
-      s.src=k;
-      e.parentNode.insertBefore(s,e)}
-    })
-  (window,document,'script','//www.talkus.io/plugin.beta.js','talkus');
-  talkus('init', '4LHeHnEZnZaZ2Rw38');
 });
 function ableButton(){
   $(".rentButton").attr('disabled', 'disabled');
@@ -589,37 +614,3 @@ text_truncate = function(str, length, ending) {
     return str;
   }
 };
-function navbarTopFunction(){
-  var bodyScrollTop = $("body").scrollTop();
-  var navBarHeight = parseInt($(".mdl-layout__drawer-button").css('height').replace("px", ""));
-  if (bodyScrollTop > navBarHeight) {
-    $(".fixed-navbar").slideDown('fast');
-    if ($(window).width() < 600) {
-      $(".mobileAndWidthSmallHide").hide();
-      $("#booking").addClass('rent-button');
-    } else {
-      $("#booking").removeClass('rent-button');
-    }
-    $("#fixedBookingRow").css("position", "fixed")
-    $("#fixedBookingRow").css("top", "0")
-    $("#fixedBookingRow").css("right", "0")
-    $("#fixedBookingRow").css("left", "0")
-    $("#fixedBookingRow").css("margin", "auto")
-    $("#fixedBookingRow").css("z-index", "100")
-    $("#fixedBookingRow").css("backgroundColor", "rgba(0,0,0,0.9)")
-    $(".bookRowInside").css("marginBottom", '0px')
-    $(".bookRowInside").css("marginTop", '10px')
-    $(".bookRow").css("marginBottom", '0px')
-    $(".input-field .material-icons.prefix").css('color', 'white')
-  }
-  else {
-    var display = $(".mobileAndWidthSmallHide").css('display');
-    if ($(window).width() < 425) {
-      $(".mobileAndWidthSmallHide").show();
-    }
-    else if ($(window).width() > 425 && display == "none") {
-      $(".mobileAndWidthSmallHide").show();
-    }
-    $(".fixed-navbar").slideUp('fast');
-  }
-}

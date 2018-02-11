@@ -1,0 +1,67 @@
+<div id="fixed-top-booking-bar" style="display: none;">
+  <div class="row fixed-top-booking-bar-row">
+    <form class="col m12" style="width: 100%;">
+      <div class="row fixed-top-booking-bar-row-inside">
+        <div class="input-field col s12 m4 mobile-and-width-small-hide">
+          <i class="material-icons prefix" for="arrival">date_range</i>
+          <input id ="arrival" type="text" class="datepicker">
+          <label for="arrival">Data de chegada</label>
+        </div>
+        <div class="input-field col s12 m4 mobile-and-width-small-hide">
+          <i class="material-icons prefix" for="arrival">date_range</i>
+          <input id="departure" type="text" class="datepicker">
+          <label for="departure">Data de partida</label>
+        </div>
+        <div class="col s12 m3 center-align">
+          <a style="cursor: pointer;" id="booking" class="btn btn-large waves-effect waves-light amber modal-trigger">reservar</a>
+        </div>
+        <%= render 'partials/whatsapp_number' %>
+        <%= render 'partials/errors' %>
+      </div>
+    </form>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+      $(window).scroll(function() {
+        var searchBar = $("#fixed-top-booking-bar");
+        if (searchBar.length > 0) {
+          var bodyScrollTop = $(this).scrollTop();
+
+          if (bodyScrollTop > 100) {
+            $("#fixed-top-booking-bar").slideDown("fast");
+            if ($(window).width() < 600) {
+              $(".mobile-and-width-small-hide").hide();
+              $("#booking").attr("href", "https://booking.cafehostel.com.br/en/hqb/drjl9zZq6b/availability");
+              $("#booking").attr("target", "_blank");
+            } else {
+              $("#booking").removeAttr("href");
+              $("#booking").removeAttr("target");
+              $(".mobile-and-width-small-hide").show();
+            }
+            $("#fixed-top-booking-bar").css("position", "fixed");
+            $("#fixed-top-booking-bar").css("top", "0");
+            $("#fixed-top-booking-bar").css("right", "0");
+            $("#fixed-top-booking-bar").css("left", "0");
+            $("#fixed-top-booking-bar").css("margin", "auto");
+            $("#fixed-top-booking-bar").css("z-index", "100");
+            $("#fixed-top-booking-bar").css("backgroundColor", "rgba(0,0,0,0.9)");
+            $(".fixed-top-booking-bar-row-inside").css("marginBottom", '0px');
+            $(".fixed-top-booking-bar-row-inside").css("marginTop", '10px');
+            $(".fixed-top-booking-bar-row").css("marginBottom", '0px');
+            $(".input-field .material-icons.prefix").css('color', 'white');
+          }
+          else {
+            $("#fixed-top-booking-bar").css("display", 'none');
+            var display = $(".mobile-and-width-small-hide").css('display');
+            if ($(window).width() < 425) {
+              $(".mobile-and-width-small-hide").show();
+            }
+            else if ($(window).width() > 425 && display == "none") {
+              $(".mobile-and-width-small-hide").show();
+            }
+          }
+        }
+      });
+  });
+</script>
