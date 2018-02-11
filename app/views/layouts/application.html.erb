@@ -9,11 +9,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <% if params["action"] == 'index' %>
-  <body onscroll="navbarFixedFunction()">
-  <% else %>
-  <body onscroll="navbarTopFunction()">
-  <% end %>
+  <body>
     <%= render 'partials/sidebar' %>
     <%= render 'partials/navbar' %>
     <%= render 'partials/overlay' %>
@@ -27,6 +23,72 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'UA-49861311-1');
+
+      $(document).ready(function(){
+        (function(t,a,l,k,u,s,e){
+          if(!t[u]){
+            t[u]=function(){
+              (t[u].q=t[u].q||[]).push(arguments)
+            },
+            t[u].l=1*new Date();
+            s=a.createElement(l),
+            e=a.getElementsByTagName(l)[0];
+            s.async=1;
+            s.src=k;
+            e.parentNode.insertBefore(s,e)}
+          })
+        (window,document,'script','//www.talkus.io/plugin.beta.js','talkus');
+        talkus('init', '4LHeHnEZnZaZ2Rw38');
+
+        $(window).scroll(function() {
+          var searchBar = $("#fixedBookingRow");
+          if (searchBar.length > 0) {
+
+            var searchBarHeight = parseInt(searchBar.css("height").replace("px", ""));
+            var searchBarPosition = $("#fixedBookingRow").position()['top'];
+            var bodyScrollTop = $(this).scrollTop();
+
+            if (bodyScrollTop > searchBarHeight + searchBarPosition) {
+              if ($(window).width() < 600) {
+                $(".mobileAndWidthSmallHide").hide();
+                $("#booking").attr("href", "https://booking.cafehostel.com.br/en/hqb/drjl9zZq6b/availability");
+                $("#booking").attr("target", "_blank");
+              } else {
+                $("#booking").removeAttr("href");
+                $("#booking").removeAttr("target");
+                $(".mobileAndWidthSmallHide").show();
+              }
+              $("#fixedBookingRow").slideDown("fast");
+              $("#fixedBookingRow").css("position", "fixed");
+              $("#fixedBookingRow").css("top", "0");
+              $("#fixedBookingRow").css("right", "0");
+              $("#fixedBookingRow").css("left", "0");
+              $("#fixedBookingRow").css("margin", "auto");
+              $("#fixedBookingRow").css("z-index", "100");
+              $("#fixedBookingRow").css("backgroundColor", "rgba(0,0,0,0.9)");
+              $(".bookRowInside").css("marginBottom", '0px');
+              $(".bookRowInside").css("marginTop", '10px');
+              $(".bookRow").css("marginBottom", '0px');
+              $(".input-field .material-icons.prefix").css('color', 'white');
+            }
+            else {
+              var display = $(".mobileAndWidthSmallHide").css('display');
+              if ($(window).width() < 425) {
+                $(".mobileAndWidthSmallHide").show();
+              }
+              else if ($(window).width() > 425 && display == "none") {
+                $(".mobileAndWidthSmallHide").show();
+              }
+              $("#fixedBookingRow").css("backgroundColor", "transparent");
+              $("#fixedBookingRow").css("position", "relative");
+              $("#fixedBookingRow").css("margin-bottom", "20vh");
+              $(".bookRowInside").css("marginBottom", '20px');
+              $(".bookRow").css("marginBottom", '20px');
+              $(".input-field .material-icons.prefix").css('color', "rgba(0, 0, 0, 0.87)");
+            }
+          }
+        });
+      });
     </script>
   </body>
 </html>

@@ -1,9 +1,9 @@
 $(document).ready(function(){
   $("#send-message").click(function(){
-    var name = $("#name").val()
-    var email = $("#email").val()
-    var subject = $("#subject").val()
-    var message = $("#message").val()
+    var name = $("#name").val();
+    var email = $("#email").val();
+    var subject = $("#subject").val();
+    var message = $("#message").val();
     if (name == "  " || name.length < 1 || $("#name").hasClass('invalid')) {
       return $(".errors-text .name-error").slideDown('fast');
     } else {
@@ -20,7 +20,8 @@ $(document).ready(function(){
       $(".errors-text .subject-error").slideUp('fast')
     }
     if ($("#message").hasClass('invalid') || message.length < 1 || message == " ") {
-      return $(".errors-text .message-error").slideDown('fast')
+      $("#success-message").slideUp('fast');
+      return $(".errors-text .message-error").slideDown('fast');
     } else {
       $(".errors-text .message-error").slideUp('fast')
     }
@@ -39,6 +40,10 @@ $(document).ready(function(){
       // console.log(response)
       if (response.status){
         $("#success-message").slideDown('fast');
+        $("#name").val("");
+        $("#email").val("");
+        $("#subject").val("");
+        $("#message").val("");
       }
     }).error(function(response){
       // console.log(response)
