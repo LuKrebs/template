@@ -3,7 +3,7 @@ class ApplicationMailerPreview < ActionMailer::Preview
 
   def new_message_from_website
     message = Message.first
-    default_reciver = "lkrebs05@gmail.com"
+    default_reciver = "info@cafehostel.com.br"
     ApplicationMailer.new_message_from_website(message)
   end
 
