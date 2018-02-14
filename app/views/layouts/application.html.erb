@@ -19,27 +19,7 @@
     <%= javascript_include_tag 'booking.js' %>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49861311-1"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-49861311-1');
-
       $(document).ready(function(){
-        (function(t,a,l,k,u,s,e){
-          if(!t[u]){
-            t[u]=function(){
-              (t[u].q=t[u].q||[]).push(arguments)
-            },
-            t[u].l=1*new Date();
-            s=a.createElement(l),
-            e=a.getElementsByTagName(l)[0];
-            s.async=1;
-            s.src=k;
-            e.parentNode.insertBefore(s,e)}
-          })
-        (window,document,'script','//www.talkus.io/plugin.beta.js','talkus');
-        talkus('init', '4LHeHnEZnZaZ2Rw38');
-
         $(window).scroll(function() {
           var searchBar = $("#fixedBookingRow");
           if (searchBar.length > 0) {

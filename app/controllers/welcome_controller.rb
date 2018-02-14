@@ -109,6 +109,9 @@ class WelcomeController < ApplicationController
       @result = {
         status: status
       }
+
+      ApplicationMailer.new_message_from_website(message).deliver_now
+
       respond_to do |format|
         format.json { render json: @result }
         format.html
@@ -118,6 +121,7 @@ class WelcomeController < ApplicationController
   end
 
   def booking
+     redirect_to root_url
   end
 
   def work
