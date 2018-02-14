@@ -34,10 +34,12 @@
               $(".mobile-and-width-small-hide").hide();
               $("#booking").attr("href", "https://booking.cafehostel.com.br/en/hqb/drjl9zZq6b/availability");
               $("#booking").attr("target", "_blank");
+              $("#booking").data("need-validation", false);
             } else {
               $("#booking").removeAttr("href");
               $("#booking").removeAttr("target");
               $(".mobile-and-width-small-hide").show();
+              $("#booking").data("need-validation", true);
             }
             $("#fixed-top-booking-bar").css("position", "fixed");
             $("#fixed-top-booking-bar").css("top", "0");

@@ -20,6 +20,11 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49861311-1"></script>
     <script>
       $(document).ready(function(){
+        if (window.innerWidth < 600) {
+          $("#booking").data("need-validation", false);
+        } else {
+          $("#booking").data("need-validation", true);
+        }
         $(window).scroll(function() {
           var searchBar = $("#fixedBookingRow");
           if (searchBar.length > 0) {
@@ -33,10 +38,12 @@
                 $(".mobileAndWidthSmallHide").hide();
                 $("#booking").attr("href", "https://booking.cafehostel.com.br/en/hqb/drjl9zZq6b/availability");
                 $("#booking").attr("target", "_blank");
+                $("#booking").data("need-validation", false);
               } else {
                 $("#booking").removeAttr("href");
                 $("#booking").removeAttr("target");
                 $(".mobileAndWidthSmallHide").show();
+                $("#booking").data("need-validation", true);
               }
               $("#fixedBookingRow").slideDown("fast");
               $("#fixedBookingRow").css("position", "fixed");
@@ -50,6 +57,7 @@
               $(".bookRowInside").css("marginTop", '10px');
               $(".bookRow").css("marginBottom", '0px');
               $(".input-field .material-icons.prefix").css('color', 'white');
+
             }
             else {
               var display = $(".mobileAndWidthSmallHide").css('display');

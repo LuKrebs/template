@@ -1,40 +1,43 @@
 $(document).ready(function() {
-  $("#booking").click(function() {
+  $("body").on("click", "#booking", function (){
     // WITHOUT OVERLAY
     var arrival = $("#arrival").val();
     var departure = $("#departure").val();
+    var needValidation = $(this).data("need-validation");
     $("li.error-message i").css('color', 'white');
 
-    if (arrival == "") {
-      return $(".error-message-arrival-date").slideDown("fast");
+    if (needValidation) {
+      if (arrival == "") {
+        return $(".error-message-arrival-date").slideDown("fast");
+      }
+      if (departure == "") {
+        return $(".error-message-departure-date").slideDown("fast");
+      }
+      arrival = new Date(arrival);
+      departure = new Date(departure);
+      if (arrival >= departure) {
+        return $(".error-message-equal-date").slideDown("fast")
+      }
+      if (arrival < new Date()) {
+        return $(".error-message-less-date").slideDown("fast")
+      }
+      $.ajax({
+        // url: 'http://localhost:3000',
+        url: "https://template-hq.herokuapp.com/",
+        method: "GET",
+        dataType: "json",
+        data: {arrival: arrival, departure: departure}
+      }).
+      done(function(response){
+        // console.log("response")
+      }).
+      success(function(response){
+        window.open(response.url, "_self");
+      }).
+      error(function(response){
+        // console.log(response);
+      });
     }
-    if (departure == "") {
-      return $(".error-message-departure-date").slideDown("fast");
-    }
-    arrival = new Date(arrival);
-    departure = new Date(departure);
-    if (arrival >= departure) {
-      return $(".error-message-equal-date").slideDown("fast")
-    }
-    if (arrival < new Date()) {
-     return $(".error-message-less-date").slideDown("fast")
-    }
-    $.ajax({
-      // url: 'http://localhost:3000',
-      url: "https://template-hq.herokuapp.com/",
-      method: "GET",
-      dataType: "json",
-      data: {arrival: arrival, departure: departure}
-    }).
-    done(function(response){
-      // console.log("response")
-    }).
-    success(function(response){
-      window.open(response.url, "_self");
-    }).
-    error(function(response){
-      // console.log(response);
-    });
   });
 
   //   $("#booking").click(function() {
@@ -68,7 +71,7 @@ $(document).ready(function() {
   //   var departure = $("#departure").val();
   //   $.ajax({
   //     url: 'http://localhost:3000',
-  //     // url: "https://template-hq.herokuapp.com/",
+  //     url: "https://template-hq.herokuapp.com/",
   //     method: "GET",
   //     dataType: "json",
   //     data: {arrival: arrival, departure: departure}

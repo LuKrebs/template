@@ -136,7 +136,6 @@ class WelcomeController < ApplicationController
                 phone: params['phone'],
                 country: params['country'],
                 notes: params['notes'],
-                breakfast: params['breakfast'],
                 descount_cupom: params['descount_cupom'],
                 arrive: params['arrive'],
                 departure: params['departure'],
