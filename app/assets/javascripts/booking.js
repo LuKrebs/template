@@ -23,7 +23,7 @@ $(document).ready(function() {
       }
       $.ajax({
         // url: 'http://localhost:3000',
-        url: "http://cafehostel.com.br/",
+        url: "http://www.cafehostel.com.br/",
         method: "GET",
         dataType: "json",
         data: {arrival: arrival, departure: departure}
@@ -159,7 +159,7 @@ $(document).ready(function() {
     $(".dates-info").slideDown('fast')
     $.ajax({
       // url: 'http://localhost:3000',
-      url: "http://cafehostel.com.br/",
+      url: "http://www.cafehostel.com.br/",
       method: "GET",
       dataType: "json",
       data: {arrival: arrival, departure: departure}
@@ -356,7 +356,7 @@ $(document).ready(function() {
     var room = $(".room-name").text()
     $.ajax({
       // url: 'http://localhost:3000/confirm',
-      url: "http://cafehostel.com.br/confirm",
+      url: "http://www.cafehostel.com.br/confirm",
       // url: "https://template-hq.herokuapp.com/confirm",
       method: "POST",
       dataType: "json",

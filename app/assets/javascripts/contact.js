@@ -28,7 +28,7 @@ $(document).ready(function(){
     $.ajax({
       // url: 'http://localhost:3000/contact',
       // url: "https://template-hq.herokuapp.com/contact",
-      url: "http://cafehostel.com.br/contact",
+      url: "http://www.cafehostel.com.br/contact",
       method: 'POST',
       dataType: "json",
       data: {
